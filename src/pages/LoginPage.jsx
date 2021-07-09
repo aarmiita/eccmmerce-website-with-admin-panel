@@ -1,4 +1,3 @@
-import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +11,11 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useStyles } from "../styles";
+import React, { useState } from "react";
+import { useHistory } from "react-router";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { login } from "../api/login";
 
 function Copyright() {
   return (
@@ -26,70 +30,105 @@ function Copyright() {
 }
 
 export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  let history = useHistory();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log("Hrllo");
+    if ((email, password)) {
+      login(email, password)
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          history.push("/admin/dashboard");
+        })
+        .catch((err) => console.log(err));
+    } else {
+      toast.error("email and password fields could not be empty");
+    }
+  };
+  const handleChage = (e) => {
+    console.log(e.target.value);
+    if (e.target.name === "email") {
+      setEmail(e.target.value);
+    } else {
+      setPassword(e.target.value);
+    }
+  };
   const classes = useStyles();
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2">
+    <>
+      <ToastContainer />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            ورود به پنل مدیریت
+          </Typography>
+          <form className={classes.form} onSubmit={handleLogin} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="آدرس ایمیل"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={email}
+              onChange={handleChage}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="پسورد"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={handleChage}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="مرا به خاطر بسپار"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              ورود
+            </Button>
+            <Button color="primary" className={classes.back}>
+              بازگشت به سایت
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                {/* <Link href="#" variant="body2">
                 Forgot password?
               </Link> */}
-            </Grid>
-            <Grid item>
-              {/* <Link href="#" variant="body2">
+              </Grid>
+              <Grid item>
+                {/* <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link> */}
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    </>
   );
 }
