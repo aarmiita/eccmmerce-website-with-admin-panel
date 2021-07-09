@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Orders from "./pages/Orders";
 import StockAndPrice from "./pages/StockAndPrice";
+import NotFound from "./pages/NotFound";
 function App() {
   let history = useHistory();
   return (
@@ -29,6 +30,10 @@ function App() {
           exact
           component={StockAndPrice}
         />
+        <Route path="*" exact>
+          <Header />
+          <NotFound />
+        </Route>
       </Switch>
     </>
   );

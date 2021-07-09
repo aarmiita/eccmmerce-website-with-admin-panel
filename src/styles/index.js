@@ -97,4 +97,10 @@ export const useStyles = makeStyles((theme) => ({
   mainDashboard: {
     margin: theme.spacing(10, 0, 0, 30),
   },
+  notfound: {
+    display: "flex",
+    justifyContent: "center",
+    margin: "auto",
+    padding: theme.spacing(20),
+  },
 }));
