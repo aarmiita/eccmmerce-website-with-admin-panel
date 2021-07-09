@@ -6,6 +6,8 @@ import ProductManagePage from "./pages/ProductManagePage";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { useHistory } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import Orders from "./pages/Orders";
+import StockAndPrice from "./pages/StockAndPrice";
 function App() {
   let history = useHistory();
   return (
@@ -20,6 +22,12 @@ function App() {
           path="/admin/dashboard"
           exact
           component={ProductManagePage}
+        />
+        <ProtectedRoute path="/admin/Orders" exact component={Orders} />
+        <ProtectedRoute
+          path="/admin/StockAndPrice"
+          exact
+          component={StockAndPrice}
         />
       </Switch>
     </>

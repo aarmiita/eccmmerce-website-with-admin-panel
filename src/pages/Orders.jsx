@@ -1,14 +1,14 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "../styles";
-const AdminPage = () => {
+const Orders = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.mainDashboard}>
       <main className={classes.content}>
         <div className={classes.subContent} />
-        <h1>PM</h1>
+        <h1>orders</h1>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
@@ -29,4 +29,4 @@ const AdminPage = () => {
     </div>
   );
 };
-export default AdminPage;
+export default Orders;

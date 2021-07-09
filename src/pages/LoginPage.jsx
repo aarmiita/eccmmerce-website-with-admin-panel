@@ -108,9 +108,6 @@ export default function SignIn() {
             >
               ورود
             </Button>
-            <Button color="primary" className={classes.back}>
-              بازگشت به سایت
-            </Button>
             <Grid container>
               <Grid item xs>
                 {/* <Link href="#" variant="body2">
@@ -118,9 +115,13 @@ export default function SignIn() {
               </Link> */}
               </Grid>
               <Grid item>
-                {/* <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link> */}
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => history.push("/")}
+                >
+                  {"بازگشت به سایت"}
+                </Link>
               </Grid>
             </Grid>
           </form>

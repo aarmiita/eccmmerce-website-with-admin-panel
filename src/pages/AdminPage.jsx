@@ -92,13 +92,13 @@ const AdminPage = () => {
             </ListItemIcon>
             <ListItemText primary={"کالا ها"} />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => history.push("/admin/StockAndPrice")}>
             <ListItemIcon>
               <LocalOfferIcon />
             </ListItemIcon>
             <ListItemText primary={"موجودی و قیمت"} />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => history.push("/admin/Orders")}>
             <ListItemIcon>
               <MarkunreadMailboxIcon />
             </ListItemIcon>
