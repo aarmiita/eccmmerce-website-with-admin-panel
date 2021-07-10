@@ -1,4 +1,5 @@
 import { createStyle, makeStyles } from "@material-ui/core";
+import { COLORS } from "./constantVariables";
 const drawerWidth = 240;
 
 export const useStyles = makeStyles((theme) => ({
@@ -102,5 +103,24 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     margin: "auto",
     padding: theme.spacing(20),
+  },
+  table: {
+    minWidth: 550,
+  },
+  tableImage: {
+    width: 44,
+  },
+  tableBtn: {
+    margin: theme.spacing(0, 5),
+  },
+  tableDiv: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  button: {
+    margin: theme.spacing(1),
+    backgroundColor: COLORS.green,
+    color: "white",
   },
 }));
