@@ -3,16 +3,22 @@ import Typography from "@material-ui/core/Typography";
 import { useSelector, useDispatch } from "react-redux";
 import { useStyles } from "../styles";
 import { getAllProducts } from "../api/products";
-import { setProducts } from "../redux/actions/productActions";
+import { setProducts, getProducts } from "../redux/actions/productActions";
 const AdminPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.products);
+  const selectedProduct = useSelector(
+    (state) => state.allProducts.selectedProduct
+  );
+  // useEffect(() => {
+  //   getAllProducts().then((res) => {
+  //     console.log(res.data);
+  //     dispatch(setProducts(res.data));
+  //   });
+  // }, []);
   useEffect(() => {
-    getAllProducts().then((res) => {
-      console.log(res.data);
-      dispatch(setProducts(res.data));
-    });
+    dispatch(getProducts());
   }, []);
   return (
     <div className={classes.mainDashboard}>
