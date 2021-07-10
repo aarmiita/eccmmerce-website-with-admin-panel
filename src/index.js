@@ -10,6 +10,8 @@ import { create } from "jss";
 import { createMuiTheme } from "@material-ui/core";
 import rtl from "jss-rtl";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 const theme = createMuiTheme({
   direction: "rtl",
 });
@@ -18,13 +20,15 @@ const theme = createMuiTheme({
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <StylesProvider jss={jss}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </StylesProvider>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <StylesProvider jss={jss}>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </StylesProvider>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

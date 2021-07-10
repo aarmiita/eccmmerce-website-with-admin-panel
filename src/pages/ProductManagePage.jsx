@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
+import { useSelector, useDispatch } from "react-redux";
 import { useStyles } from "../styles";
+import { getAllProducts } from "../api/products";
+import { setProducts } from "../redux/actions/productActions";
 const AdminPage = () => {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.allProducts.products);
+  useEffect(() => {
+    getAllProducts().then((res) => {
+      console.log(res.data);
+      dispatch(setProducts(res.data));
+    });
+  }, []);
   return (
     <div className={classes.mainDashboard}>
       <main className={classes.content}>
         <div className={classes.subContent} />
         <h1>PM</h1>
-        <Typography paragraph>
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
           dolor purus non enim praesent elementum facilisis leo vel. Risus at
@@ -24,7 +34,16 @@ const AdminPage = () => {
           lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
           faucibus et molestie ac.
         </Typography>
-        <Typography paragraph></Typography>
+        <Typography paragraph></Typography> */}
+        <div>
+          {products.map((product, index) => (
+            <div key={index}>
+              <h1>{product.id}</h1>
+              <h1>{product.title}</h1>
+              <h1>{product.category}</h1>
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   );
