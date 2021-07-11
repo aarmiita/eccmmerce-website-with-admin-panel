@@ -3,27 +3,23 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import AddProducts from "./AddProducts";
-import EditProduct from "./EditProduct";
+import DeleteProduct from "./DeleteProduct";
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
-  modalContent: {
+  paper: {
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(1, 2, 1),
-    maxWidth: 520,
-    minWidth: 550,
-    maxHeight: 600,
-    minHeight: 400,
+    padding: theme.spacing(2, 4, 3),
   },
 }));
 
-const EditModal = ({ open, handleClose }) => {
+export default function DeleteModal({ open, handleClose, closeModalDelete }) {
   const classes = useStyles();
 
   return (
@@ -41,12 +37,11 @@ const EditModal = ({ open, handleClose }) => {
         }}
       >
         <Fade in={open}>
-          <div className={classes.modalContent}>
-            <EditProduct closeModal={handleClose} />
+          <div className={classes.paper}>
+            <DeleteProduct closeModalDelete={closeModalDelete} />
           </div>
         </Fade>
       </Modal>
     </div>
   );
-};
-export default EditModal;
+}

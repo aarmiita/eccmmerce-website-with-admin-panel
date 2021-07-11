@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,39 +9,44 @@ import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 import { Button } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { setProducts, getProducts } from "../redux/actions/productActions";
+import { getProducts, getAProduct } from "../redux/actions/productActions";
+import { SetselectedProduct } from "../redux/actions/productActions";
 import { useStyles } from "../styles/index";
-
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-//   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-//   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-//   createData("Eclair", 262, 16.0, 24, 6.0),
-//   createData("Cupcake", 305, 3.7, 67, 4.3),
-//   createData("Gingerbread", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread2", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread3", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread4", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread5", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread6", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread7", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread8", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread9", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread10", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread11", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread12", 356, 16.0, 49, 3.9),
-//   createData("Gingerbread13", 356, 16.0, 49, 3.9),
-// ];
+import EditModal from "./EditModal";
+import DeleteModal from "./DeleteModal";
 
 export default function SimpleTable() {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.products);
   const selectedProduct = useSelector(
     (state) => state.allProducts.selectedProduct
   );
+  const handleEdit = (product) => {
+    dispatch(SetselectedProduct(product));
+    handleOpen();
+  };
+  const handleDelete = (product) => {
+    dispatch(SetselectedProduct(product));
+    handleOpenDelete();
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpenDelete = () => {
+    setOpenDelete(true);
+  };
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
+
   // useEffect(() => {
   //   getAllProducts().then((res) => {
   //     console.log(res.data);
@@ -49,12 +54,10 @@ export default function SimpleTable() {
   //   });
   // }, []);
   useEffect(() => {
-    dispatch(setProducts());
+    // dispatch(setProducts());
     dispatch(getProducts());
   }, []);
-  const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -95,6 +98,7 @@ export default function SimpleTable() {
                     variant="contained"
                     color="primary"
                     className={classes.tableBtn}
+                    onClick={() => handleEdit(product)}
                   >
                     ویرایش
                   </Button>
@@ -102,6 +106,7 @@ export default function SimpleTable() {
                     variant="contained"
                     color="secondary"
                     className={classes.tableBtn}
+                    onClick={() => handleDelete(product)}
                   >
                     حذف
                   </Button>
@@ -123,6 +128,12 @@ export default function SimpleTable() {
         page={page}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+      <EditModal open={open} handleClose={handleClose} />
+      <DeleteModal
+        open={openDelete}
+        handleClose={handleCloseDelete}
+        closeModalDelete={handleCloseDelete}
       />
     </TableContainer>
   );

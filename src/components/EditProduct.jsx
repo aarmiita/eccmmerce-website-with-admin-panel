@@ -1,26 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, TextField, SvgIcon, Box } from "@material-ui/core";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useStyles } from "../styles";
 import { useSelector, useDispatch } from "react-redux";
-import { addProduct } from "../redux/actions/productActions";
-const AddProducts = ({ closeModal }) => {
+import {
+  ChangeAProductById,
+  setProducts,
+  getProducts,
+  SetselectedProduct,
+} from "../redux/actions/productActions";
+const EditProduct = ({ closeModal }) => {
   const classes = useStyles();
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
   const products = useSelector((state) => state.allProducts.products);
+  const selectedProduct = useSelector(
+    (state) => state.allProducts.selectedProduct
+  );
   const dispatch = useDispatch();
   const categories = products?.map((product) => product.category);
   const NewCategories = [...new Set(categories)];
+  const [image, setImage] = useState("");
+  const [title, setTitle] = useState(selectedProduct.title);
+  const [price, setPrice] = useState(selectedProduct.price);
+  const [category, setCategory] = useState(selectedProduct.category);
+  const [description, setDescription] = useState(selectedProduct.description);
   const UploadImage = async (e) => {
-    console.log(e.target.files);
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
-    console.log(base64);
     setImage(base64);
   };
   const convertBase64 = (file) => {
@@ -37,22 +43,34 @@ const AddProducts = ({ closeModal }) => {
       };
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    let newProduct = {
+    let newSelectedProduct = {
+      ...selectedProduct,
       title: title,
-      image: image,
       description: description,
       category: category,
       price: Number(price),
     };
-    dispatch(addProduct(newProduct));
-    setTitle("");
-    setImage("");
-    setDescription("");
-    setCategory("");
-    setPrice("");
-    // closeModal();
+    // let newProducts = products.map((product) =>
+    //   product.id === selectedProduct.id
+    //     ? {
+    //         ...product,
+    //         newSelectedProduct,
+    //       }
+    //     : product
+    // );
+    dispatch(ChangeAProductById(selectedProduct.id, newSelectedProduct));
+    dispatch(getProducts());
+    dispatch(SetselectedProduct({}));
+    // dispatch(addProduct(newProduct));
+    // setTitle("");
+    // setImage("");
+    // setDescription("");
+    // setCategory("");
+    // setPrice("");
+    closeModal();
   };
   return (
     <>
@@ -60,9 +78,10 @@ const AddProducts = ({ closeModal }) => {
         <Box component="div" className={classes.formBoxUpload}>
           <h4 className={classes.modalTitle}>تصویر کالا :</h4>
           <div className={classes.uploadBtn}>
+            <img src={selectedProduct.image} className={classes.editImage} />
             <TextField
               variant="outlined"
-              type="file"
+              type="accept"
               id="fileUploadButton"
               onChange={(e) => UploadImage(e)}
             />
@@ -105,7 +124,6 @@ const AddProducts = ({ closeModal }) => {
             fullWidth
             name="price"
             autoComplete="name"
-            autoFocus
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
@@ -154,4 +172,4 @@ const AddProducts = ({ closeModal }) => {
   );
 };
 
-export default AddProducts;
+export default EditProduct;

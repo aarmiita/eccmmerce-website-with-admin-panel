@@ -18,6 +18,11 @@ export const ProductReducer = (state = initialState, { type, payload }) => {
       return { ...state, products: [...state.products, payload] };
     case SELECTED_PRODCUT:
       return { ...state, selectedProduct: payload };
+    case REMOVE_SELECTED_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter((product) => product.id !== payload),
+      };
     default:
       return state;
   }

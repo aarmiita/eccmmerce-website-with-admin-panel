@@ -39,6 +39,7 @@ const AdminPage = () => {
             handleClose={handleClose}
             closeModal={handleClose}
           />
+
           <SimpleTable />
         </div>
       </main>

@@ -160,4 +160,22 @@ export const useStyles = makeStyles((theme) => ({
   formInput: {
     height: 40,
   },
+  editImage: {
+    width: 34,
+  },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalContent: {
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(1, 2, 1),
+    maxWidth: 520,
+    minWidth: 550,
+    maxHeight: 600,
+    minHeight: 400,
+  },
 }));
