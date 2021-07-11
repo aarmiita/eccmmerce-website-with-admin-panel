@@ -15,3 +15,13 @@ export const getAProductById = async (id) => {
   }).catch((err) => console.log(err));
   return res;
 };
+export const addAProduct = async (product) => {
+  let res = await axios({
+    method: "post",
+    url: `http://localhost:5001/products`,
+    headers: { "content-type": "application/json" },
+    data: JSON.stringify(product),
+  }).catch((err) => console.log(err));
+  console.log(res);
+  return res;
+};

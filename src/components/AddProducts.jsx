@@ -4,8 +4,8 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useStyles } from "../styles";
 import { useSelector, useDispatch } from "react-redux";
-import { setProducts } from "../redux/actions/productActions";
-const AddProducts = () => {
+import { addProduct } from "../redux/actions/productActions";
+const AddProducts = ({ closeModal }) => {
   const classes = useStyles();
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
@@ -13,6 +13,7 @@ const AddProducts = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const products = useSelector((state) => state.allProducts.products);
+  const dispatch = useDispatch();
   const categories = products?.map((product) => product.category);
   const NewCategories = [...new Set(categories)];
   const UploadImage = async (e) => {
@@ -38,6 +39,20 @@ const AddProducts = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    let newProduct = {
+      title: title,
+      image: image,
+      description: description,
+      category: category,
+      price: Number(price),
+    };
+    dispatch(addProduct(newProduct));
+    setTitle("");
+    setImage("");
+    setDescription("");
+    setCategory("");
+    setPrice("");
+    // closeModal();
   };
   return (
     <>

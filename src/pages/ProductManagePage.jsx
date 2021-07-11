@@ -34,7 +34,11 @@ const AdminPage = () => {
           </Button>
         </Box>
         <div>
-          <AddModal open={open} handleClose={handleClose} />
+          <AddModal
+            open={open}
+            handleClose={handleClose}
+            closeModal={handleClose}
+          />
           <SimpleTable />
         </div>
       </main>

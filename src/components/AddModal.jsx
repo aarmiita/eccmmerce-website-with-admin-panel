@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddModal = ({ open, handleClose }) => {
+const AddModal = ({ open, handleClose, closeModal }) => {
   const classes = useStyles();
 
   return (
@@ -41,7 +41,7 @@ const AddModal = ({ open, handleClose }) => {
       >
         <Fade in={open}>
           <div className={classes.modalContent}>
-            <AddProducts />
+            <AddProducts closeModal={closeModal} />
           </div>
         </Fade>
       </Modal>
