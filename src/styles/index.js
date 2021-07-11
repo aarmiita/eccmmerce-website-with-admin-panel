@@ -203,9 +203,4 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "small",
     margin: theme.spacing(0, 1),
   },
-  headertoolbar: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-  },
 }));
