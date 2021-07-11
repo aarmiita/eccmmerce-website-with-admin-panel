@@ -1,3 +1,3 @@
 export const COLORS = {
-  green: "rgb(10, 172, 10)",
+  green: "#388e3c",
 };

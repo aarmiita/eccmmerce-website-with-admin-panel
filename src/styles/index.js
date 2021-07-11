@@ -129,4 +129,35 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
   },
+  formBox: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  formBoxUpload: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  uploadBtn: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  modalTitle: {
+    padding: theme.spacing(0),
+  },
+  savebtn: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  save: {
+    backgroundColor: COLORS.green,
+    color: "#f5f5f5",
+    margin: theme.spacing(4, 0),
+  },
+  formInput: {
+    height: 40,
+  },
 }));

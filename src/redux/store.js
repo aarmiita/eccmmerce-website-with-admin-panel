@@ -3,7 +3,7 @@ import { reducers } from "./reducers/index";
 import logger from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
 import ReduxThunk from "redux-thunk";
-const middlewareEnhancer = applyMiddleware(logger, ReduxThunk);
+const middlewareEnhancer = applyMiddleware(ReduxThunk);
 const composedEnhancers = composeWithDevTools(middlewareEnhancer);
 const store = createStore(
   reducers,
