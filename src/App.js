@@ -1,4 +1,4 @@
-import "./App.css";
+import "./assets/sass/app.scss";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from "./pages/LoginPage";
@@ -9,14 +9,18 @@ import HomePage from "./pages/HomePage";
 import Orders from "./pages/Orders";
 import StockAndPrice from "./pages/StockAndPrice";
 import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
 function App() {
   let history = useHistory();
   return (
     <>
       <Switch>
         <Route path="/" exact>
-          <Header />
-          <HomePage />
+          <div className="mainContainer">
+            <Header />
+            <HomePage />
+            <Footer />
+          </div>
         </Route>
         <Route path="/admin/login" exact component={SignIn} />
         <ProtectedRoute

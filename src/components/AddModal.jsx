@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
+import CancelIcon from "@material-ui/icons/Cancel";
 import Fade from "@material-ui/core/Fade";
 import AddProducts from "./AddProducts";
 import { useStyles } from "../styles";
@@ -25,6 +26,10 @@ const AddModal = ({ open, handleClose, closeModal }) => {
       >
         <Fade in={open}>
           <div className={classes.modalContent}>
+            <CancelIcon
+              className={classes.closeModalIcon}
+              onClick={closeModal}
+            />
             <AddProducts closeModal={closeModal} />
           </div>
         </Fade>

@@ -178,4 +178,34 @@ export const useStyles = makeStyles((theme) => ({
     maxHeight: 600,
     minHeight: 400,
   },
+  backtoSite: {
+    marginLeft: "auto",
+    margin: theme.spacing(0, 5),
+    color: "white",
+  },
+  adminHeader: {
+    display: "flex",
+  },
+  closeModalIcon: {
+    fontSize: "medium",
+    float: "right",
+    cursor: "pointer",
+  },
+  footer: {
+    overflowY: "hidden",
+    textAlign: "center",
+    position: "absolute",
+    bottom: 0,
+    height: "100",
+    backgroundColor: "#3f51b5",
+  },
+  headericon: {
+    fontSize: "small",
+    margin: theme.spacing(0, 1),
+  },
+  headertoolbar: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
 }));

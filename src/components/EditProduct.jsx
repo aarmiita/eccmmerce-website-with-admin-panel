@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, TextField, SvgIcon, Box } from "@material-ui/core";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import MenuItem from "@material-ui/core/MenuItem";
+import { toast, ToastContainer } from "react-toastify";
 import { useStyles } from "../styles";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -24,6 +25,21 @@ const EditProduct = ({ closeModal }) => {
   const [price, setPrice] = useState(selectedProduct.price);
   const [category, setCategory] = useState(selectedProduct.category);
   const [description, setDescription] = useState(selectedProduct.description);
+  useEffect(() => {
+    const getBase64FromUrl = async (url) => {
+      const data = await fetch(url);
+      const blob = await data.blob();
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          resolve(base64data);
+        };
+      });
+    };
+    getBase64FromUrl(selectedProduct.image).then((res) => setImage(res));
+  }, []);
   const UploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
@@ -46,13 +62,23 @@ const EditProduct = ({ closeModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let newSelectedProduct = {
-      ...selectedProduct,
-      title: title,
-      description: description,
-      category: category,
-      price: Number(price),
-    };
+    if (title === "" || price === "" || category === "") {
+      toast.error("لطفا اطلاعات را به درستی وارد کنید ");
+      return;
+    } else {
+      let newSelectedProduct = {
+        ...selectedProduct,
+        image: image,
+        title: title,
+        description: description,
+        category: category,
+        price: Number(price),
+      };
+      dispatch(ChangeAProductById(selectedProduct.id, newSelectedProduct));
+      dispatch(getProducts());
+      dispatch(SetselectedProduct({}));
+      closeModal();
+    }
     // let newProducts = products.map((product) =>
     //   product.id === selectedProduct.id
     //     ? {
@@ -61,19 +87,17 @@ const EditProduct = ({ closeModal }) => {
     //       }
     //     : product
     // );
-    dispatch(ChangeAProductById(selectedProduct.id, newSelectedProduct));
-    dispatch(getProducts());
-    dispatch(SetselectedProduct({}));
+
     // dispatch(addProduct(newProduct));
     // setTitle("");
     // setImage("");
     // setDescription("");
     // setCategory("");
     // setPrice("");
-    closeModal();
   };
   return (
     <>
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <Box component="div" className={classes.formBoxUpload}>
           <h4 className={classes.modalTitle}>تصویر کالا :</h4>
@@ -83,11 +107,12 @@ const EditProduct = ({ closeModal }) => {
               variant="outlined"
               type="accept"
               id="fileUploadButton"
-              onChange={(e) => UploadImage(e)}
+              value={image}
             />
-            <label htmlFor={"fileUploadButton"}>
+            {/* <label htmlFor={"fileUploadButton"}>
               <Button
                 className={classes.upload}
+                type="files"
                 color="secondary"
                 variant="contained"
                 component="span"
@@ -99,7 +124,20 @@ const EditProduct = ({ closeModal }) => {
               >
                 Browse
               </Button>
-            </label>
+            </label> */}
+            <Button
+              variant="contained"
+              component="label"
+              color="secondary"
+              startIcon={
+                <SvgIcon fontSize="small">
+                  <CloudUploadIcon />
+                </SvgIcon>
+              }
+            >
+              Browse
+              <input type="file" onChange={(e) => UploadImage(e)} hidden />
+            </Button>
           </div>
         </Box>
         <div className={classes.formBox}>

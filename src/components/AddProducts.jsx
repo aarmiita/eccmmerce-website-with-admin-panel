@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { useStyles } from "../styles";
 import { useSelector, useDispatch } from "react-redux";
 import { addProduct } from "../redux/actions/productActions";
+import { toast, ToastContainer } from "react-toastify";
 const AddProducts = ({ closeModal }) => {
   const classes = useStyles();
   const [image, setImage] = useState("");
@@ -39,23 +40,28 @@ const AddProducts = ({ closeModal }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    let newProduct = {
-      title: title,
-      image: image,
-      description: description,
-      category: category,
-      price: Number(price),
-    };
-    dispatch(addProduct(newProduct));
-    setTitle("");
-    setImage("");
-    setDescription("");
-    setCategory("");
-    setPrice("");
-    // closeModal();
+    if (!image || !title || !price || !category) {
+      toast.error("لطفا اطلاعات را به درستی وارد کنید ");
+    } else {
+      let newProduct = {
+        title: title,
+        image: image,
+        description: description,
+        category: category,
+        price: Number(price),
+      };
+      dispatch(addProduct(newProduct));
+      setTitle("");
+      setImage("");
+      setDescription("");
+      setCategory("");
+      setPrice("");
+      closeModal();
+    }
   };
   return (
     <>
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <Box component="div" className={classes.formBoxUpload}>
           <h4 className={classes.modalTitle}>تصویر کالا :</h4>
