@@ -111,7 +111,7 @@ export const useStyles = makeStyles((theme) => ({
     width: 44,
   },
   tableBtn: {
-    margin: theme.spacing(0, 5),
+    margin: theme.spacing(2, 2),
   },
   tableDiv: {
     display: "flex",
@@ -122,5 +122,11 @@ export const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     backgroundColor: COLORS.green,
     color: "white",
+  },
+  modalcontent: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 }));

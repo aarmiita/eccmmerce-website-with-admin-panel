@@ -80,7 +80,7 @@ export default function SimpleTable() {
           {products
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((product, index) => (
-              <TableRow key={product.id}>
+              <TableRow key={index}>
                 <TableCell>
                   <img
                     src={product.image}
