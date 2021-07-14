@@ -23,7 +23,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { logout } from "../utils/auth";
 import { useStyles } from "../styles";
 import { useHistory } from "react-router-dom";
-const AdminPage = () => {
+const AdminPage = ({ children }) => {
   let history = useHistory();
   const classes = useStyles();
   const theme = useTheme();
@@ -121,6 +121,10 @@ const AdminPage = () => {
           </ListItem>
         </List>
       </Drawer>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        {children}
+      </main>
     </div>
   );
 };

@@ -14,8 +14,9 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
         if (isLogggedIn()) {
           return (
             <>
-              <AdminPage />
-              <Component {...props} />
+              <AdminPage>
+                <Component {...props} />
+              </AdminPage>
             </>
           );
         } else {
