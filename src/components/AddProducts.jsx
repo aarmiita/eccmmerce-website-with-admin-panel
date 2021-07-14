@@ -4,7 +4,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useStyles } from "../styles";
 import { useSelector, useDispatch } from "react-redux";
-import { addProduct } from "../redux/actions/productActions";
+import { addProduct, getProducts } from "../redux/actions/productActions";
 import { toast, ToastContainer } from "react-toastify";
 const AddProducts = ({ closeModal }) => {
   const classes = useStyles();
@@ -51,6 +51,7 @@ const AddProducts = ({ closeModal }) => {
         price: Number(price),
       };
       dispatch(addProduct(newProduct));
+      dispatch(getProducts());
       setTitle("");
       setImage("");
       setDescription("");
