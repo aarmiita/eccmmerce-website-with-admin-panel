@@ -10,7 +10,12 @@ import Paper from "@material-ui/core/Paper";
 import { useStyles } from "../../styles/index";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../api/products";
-import { changeState, setProducts } from "../../redux/actions/productActions";
+import {
+  changeState,
+  setProducts,
+  getProducts,
+  ChangeAProductById,
+} from "../../redux/actions/productActions";
 import { TextField } from "@material-ui/core";
 import { Box, Button } from "@material-ui/core";
 import SaveAltIcon from "@material-ui/icons/SaveAlt";
@@ -31,6 +36,7 @@ export default function SimpleTable() {
       setRows(newRows);
     });
   }, []);
+  const products = useSelector((state) => state.allProducts.products);
 
   const changeEditPrice = (id) => {
     let newRows = [...rows];
@@ -60,6 +66,20 @@ export default function SimpleTable() {
     });
     setNewProducts(arrays);
   };
+  const saveEdit = () => {
+    newProducts.map((item, index) => {
+      if (
+        item.price !== products[index].price ||
+        item.stock !== products[index].stock
+      ) {
+        dispatch(ChangeAProductById(item.id, item));
+      }
+    });
+    const newRows = newProducts.map((item) => {
+      return { id: item.id, priceEditable: false, entityEditable: false };
+    });
+    setRows(newRows);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -82,6 +102,7 @@ export default function SimpleTable() {
             color="default"
             className={classes.button}
             startIcon={<SaveAltIcon />}
+            onClick={saveEdit}
           >
             ذخیره
           </Button>
