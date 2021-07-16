@@ -203,4 +203,10 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "small",
     margin: theme.spacing(0, 1),
   },
+  tableInput: {
+    padding: theme.spacing(0),
+    margin: theme.spacing(0),
+    outline: "none",
+    border: "none",
+  },
 }));

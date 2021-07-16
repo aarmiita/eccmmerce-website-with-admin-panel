@@ -11,6 +11,7 @@ const {
   SELECTED_PRODCUT,
   REMOVE_SELECTED_PRODUCT,
   SET_NEWPRODUCTS,
+  CHANGE_STATE,
 } = ActionTypes;
 export const setProducts = (products) => {
   return {
@@ -34,6 +35,11 @@ export const deleteSelectedProduct = (id) => {
   return {
     type: SELECTED_PRODCUT,
     payload: id,
+  };
+};
+export const changeState = () => {
+  return {
+    type: CHANGE_STATE,
   };
 };
 

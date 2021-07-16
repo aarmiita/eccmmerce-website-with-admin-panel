@@ -4,11 +4,13 @@ const {
   SELECTED_PRODCUT,
   REMOVE_SELECTED_PRODUCT,
   SET_NEWPRODUCTS,
+  CHANGE_STATE,
 } = ActionTypes;
 
 const initialState = {
   products: [{}],
   selectedProduct: {},
+  showButton: false,
 };
 export const ProductReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -23,6 +25,8 @@ export const ProductReducer = (state = initialState, { type, payload }) => {
         ...state,
         products: state.products.filter((product) => product.id !== payload),
       };
+    case CHANGE_STATE:
+      return { ...state, showButton: true };
     default:
       return state;
   }

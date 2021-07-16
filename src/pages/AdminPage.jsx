@@ -23,6 +23,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { logout } from "../utils/auth";
 import { useStyles } from "../styles";
 import { useHistory } from "react-router-dom";
+
 const AdminPage = ({ children }) => {
   let history = useHistory();
   const classes = useStyles();
