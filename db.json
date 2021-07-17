@@ -3,14 +3,14 @@
     {
       "id": 1,
       "title": "Fjallraven ",
-      "stock": "66",
-      "price": "5000",
+      "stock": 66,
+      "price": 120000,
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
     },
     {
-      "id": 50,
+      "id": 2,
       "title": "Slim Fit T-Shirts ",
       "stock": 100,
       "price": 200000,
@@ -21,8 +21,8 @@
     {
       "id": 3,
       "title": "Mens Cotton Jacket",
-      "stock": 500,
-      "price": 300000,
+      "stock": 6786786,
+      "price": 120000,
       "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
@@ -179,6 +179,202 @@
       "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
       "category": "women's clothing",
       "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"
+    }
+  ],
+  "cart": [
+    {
+      "id":1,
+      "userId":1,
+      "date":"2020-03-02",
+      "compeleted":false,
+      "orders":[
+        {
+          "productId":1,
+          "title": "Fjallraven ",
+          "price": 98778978,
+          "quantity":4
+        },
+        {
+          "productId":2,
+          "title": "Slim Fit T-Shirts ",
+          "price": 200000,
+          "quantity":5
+        },
+        {
+          "productId":3,
+          "title": "Mens Cotton Jacket",
+          "price": 120000,
+          "quantity":6
+        }
+      ],
+      "information":{
+        "customerName":"ali sahabi",
+        "address":"Iran,Tehran",
+        "phoneNumber":98922222222,
+        "deliveryTime":"2020-03-05",
+        "Order time":"2020-03-02"
+      }
+    },{
+      "id":5,
+      "userId":1,
+      "date":"2020-03-02",
+      "compeleted":false,
+      "orders":[
+        {
+          "productId":1,
+          "title": "Fjallraven ",
+          "price": 98778978,
+          "quantity":4
+        },
+        {
+          "productId":2,
+          "title": "Slim Fit T-Shirts ",
+          "price": 200000,
+          "quantity":5
+        },
+        {
+          "productId":3,
+          "title": "Mens Cotton Jacket",
+          "price": 120000,
+          "quantity":6
+        }
+      ],
+      "information":{
+        "customerName":"ali sahabi",
+        "address":"Iran,Tehran",
+        "phoneNumber":98922222222,
+        "deliveryTime":"2020-03-05",
+        "Order time":"2020-03-02"
+      }
+    },{
+      "id":6,
+      "userId":1,
+      "date":"2020-03-02",
+      "compeleted":false,
+      "orders":[
+        {
+          "productId":1,
+          "title": "Fjallraven ",
+          "price": 98778978,
+          "quantity":4
+        },
+        {
+          "productId":2,
+          "title": "Slim Fit T-Shirts ",
+          "price": 200000,
+          "quantity":5
+        },
+        {
+          "productId":3,
+          "title": "Mens Cotton Jacket",
+          "price": 120000,
+          "quantity":6
+        }
+      ],
+      "information":{
+        "customerName":"ali sahabi",
+        "address":"Iran,Tehran",
+        "phoneNumber":98922222222,
+        "deliveryTime":"2020-03-05",
+        "Order time":"2020-03-02"
+      }
+    },
+    {
+      "id":2,
+      "userId":2,
+      "date":"2020-03-09",
+      "compeleted":true,
+      "orders":[
+        {
+          "productId":5,
+          "title": "hain Bracelet",
+           "price": 250000,
+          "quantity":4
+        },
+        {
+          "productId":6,
+          "title": "Solid Gold Petite Micropave ",
+          "price": 350000,
+          "quantity":5
+        },
+        {
+          "productId":7,
+          "title": "White Gold Plated Princess",
+          "price": 400000,
+          "quantity":6
+        }
+      ],
+      "information":{
+        "customerName":"zahra hosseini",
+        "address":"Iran,mazandaran",
+        "phoneNumber":989112323322,
+        "deliveryTime":"2020-03-12",
+        "Order time":"2020-03-09"
+      }
+    },{
+      "id":3,
+      "userId":3,
+      "date":"2020-03-12",
+      "compeleted":false,
+      "orders":[
+        {
+          "productId":8,
+          "title": "Pierced Owl Rose Gold",
+          "price": 500000,
+          "quantity":4
+        },
+        {
+          "productId":9,
+          "title": "External Hard Drive",
+           "price": 450000,
+          "quantity":5
+        },
+        {
+          "productId":10,
+          "title": "SanDisk SSD PLUS ",
+          "price": 375000,
+          "quantity":6
+        }
+      ],
+      "information":{
+        "customerName":"fatemeh ebrahimi",
+        "address":"Iran,karaj",
+        "phoneNumber":989223345647,
+        "deliveryTime":"2020-03-15",
+        "Order time":"2020-03-12"
+      }
+    },{
+      "id":4,
+      "userId":4,
+      "date":"2020-03-17",
+      "compeleted":true,
+      "orders":[
+        {
+          "productId":9,
+          "title": "External Hard Drive",
+          "price": 450000,
+          "quantity":4
+        },
+        {
+          "productId":10,
+          "title": "SanDisk SSD PLUS ",
+          "price": 375000,
+          "quantity":5
+        },
+        {
+          "productId":11,
+          "title": "Silicon Power 256GB SSD ",
+          "price": 650000,
+          "quantity":6
+        }
+      ],
+      "information":{
+        "customerName":"fatemeh ebrahimi",
+        "address":"Iran,karaj",
+        "phoneNumber":989223345647,
+        "deliveryTime":"2020-03-15",
+        "Order time":"2020-03-12"
+      }
     }
   ]
 }

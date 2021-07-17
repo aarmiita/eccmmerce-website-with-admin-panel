@@ -209,4 +209,42 @@ export const useStyles = makeStyles((theme) => ({
     outline: "none",
     border: "none",
   },
+  ordersTable: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  checkorders: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  checkdiv: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    padding: "0 90px",
+  },
+  checkdiv__sub: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  modaltable: {
+    height: "20px",
+    margin: "auto",
+    maxWidth: 500,
+    overflowX: "auto",
+  },
+  newtable: {
+    margin: "30px 0 20px 0 ",
+  },
+  delivery: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  deliverymodal: {
+    padding: "15px",
+  },
 }));

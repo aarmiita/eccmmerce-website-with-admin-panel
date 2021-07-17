@@ -25,18 +25,19 @@ export default function SimpleTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const showButton = useSelector((state) => state.allProducts.showButton);
   useEffect(() => {
     getAllProducts().then((res) => {
       setNewProducts(res.data);
+      setProducts(res.data);
       const newRows = res.data.map((item) => {
         return { id: item.id, priceEditable: false, entityEditable: false };
       });
       setRows(newRows);
     });
   }, []);
-  const products = useSelector((state) => state.allProducts.products);
 
   const changeEditPrice = (id) => {
     let newRows = [...rows];
@@ -61,24 +62,24 @@ export default function SimpleTable() {
     let arrays = [...newProducts];
     arrays.map((item, index) => {
       if (item.id === id) {
-        item[names] = values;
+        item[names] = Number(values);
       }
     });
     setNewProducts(arrays);
   };
   const saveEdit = () => {
-    newProducts.map((item, index) => {
-      if (
-        item.price !== products[index].price ||
-        item.stock !== products[index].stock
-      ) {
-        dispatch(ChangeAProductById(item.id, item));
-      }
-    });
-    const newRows = newProducts.map((item) => {
-      return { id: item.id, priceEditable: false, entityEditable: false };
-    });
-    setRows(newRows);
+    // newProducts.map((item, index) => {
+    //   if (
+    //     item.price !== products[index]?.price ||
+    //     item.stock !== products[index]?.stock
+    //   ) {
+    //     dispatch(ChangeAProductById(item.id, item));
+    //   }
+    // });
+    // const newRows = newProducts.map((item) => {
+    //   return { id: item.id, priceEditable: false, entityEditable: false };
+    // });
+    // setRows(newRows);
   };
 
   const handleChangePage = (event, newPage) => {
