@@ -86,7 +86,7 @@ const AdminPage = ({ children }) => {
         }}
       >
         <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} className={classes.adminicon}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
@@ -98,25 +98,25 @@ const AdminPage = ({ children }) => {
         <List>
           <ListItem button onClick={() => history.push("/admin/dashboard")}>
             <ListItemIcon>
-              <InboxIcon />
+              <InboxIcon className={classes.adminicon} />
             </ListItemIcon>
             <ListItemText primary={"کالا ها"} />
           </ListItem>
           <ListItem button onClick={() => history.push("/admin/StockAndPrice")}>
             <ListItemIcon>
-              <LocalOfferIcon />
+              <LocalOfferIcon className={classes.adminicon} />
             </ListItemIcon>
             <ListItemText primary={"موجودی و قیمت"} />
           </ListItem>
           <ListItem button onClick={() => history.push("/admin/Orders")}>
             <ListItemIcon>
-              <MarkunreadMailboxIcon />
+              <MarkunreadMailboxIcon className={classes.adminicon} />
             </ListItemIcon>
             <ListItemText primary={"سفارش ها"} />
           </ListItem>
           <ListItem button onClick={() => logout()}>
             <ListItemIcon>
-              <ExitToAppIcon />
+              <ExitToAppIcon className={classes.adminicon} />
             </ListItemIcon>
             <ListItemText primary={"خروج"} />
           </ListItem>

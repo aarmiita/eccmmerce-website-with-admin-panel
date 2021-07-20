@@ -11,6 +11,7 @@ import {
   Table,
   Box,
 } from "@material-ui/core";
+import { useSelector } from "react-redux";
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -28,34 +29,33 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const CompletedOrdersModal = ({ order }) => {
+const CompletedOrdersModal = () => {
+  const selectedCart = useSelector(
+    (state) => state.allProducts.selectedProduct
+  );
   const classes = useStyles();
-
-  useEffect(() => {
-    console.log(order);
-  }, []);
   return (
     <Box>
       <Box className={classes.checkdiv}>
         <Box className={classes.checkdiv__sub}>
           <Box className={classes.__subs}> نام مشتری : </Box>
-          <Box>{order.information.customerName}</Box>
+          <Box>{selectedCart.information.customerName}</Box>
         </Box>
         <Box className={classes.checkdiv__sub}>
           <Box className={classes.__subs}>آدرس : </Box>
-          <Box>{order.information.address}</Box>
+          <Box>{selectedCart.information.address}</Box>
         </Box>
         <Box className={classes.checkdiv__sub}>
           <Box className={classes.__subs}>تلفن : </Box>
-          <Box>{order.information.phoneNumber}</Box>
+          <Box>{selectedCart.information.phoneNumber}</Box>
         </Box>
         <Box className={classes.checkdiv__sub}>
           <Box className={classes.__subs}> زمان تحویل : </Box>
-          <Box>{order.information.deliveryTime}</Box>
+          <Box>{selectedCart.information.deliveryTime}</Box>
         </Box>
         <Box className={classes.checkdiv__sub}>
           <Box className={classes.__subs}>زمان سفارش : </Box>
-          <Box>{order.date}</Box>
+          <Box>{selectedCart.date}</Box>
         </Box>
       </Box>
       <TableContainer className={classes.newtable}>
@@ -68,7 +68,7 @@ const CompletedOrdersModal = ({ order }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {order.orders.map((product, inex) => (
+            {selectedCart.orders.map((product, inex) => (
               <StyledTableRow key={product.productId}>
                 <StyledTableCell component="th" scope="row">
                   {product.title}
@@ -84,7 +84,7 @@ const CompletedOrdersModal = ({ order }) => {
         <Box component="span">
           <Typography>زمان تحویل : </Typography>
         </Box>
-        <Box component="span">{order.information.deliveryTime}</Box>
+        <Box component="span">{selectedCart.information.deliveryTime}</Box>
       </Box>
     </Box>
   );

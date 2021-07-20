@@ -6,12 +6,15 @@ import {
   changeAProduct,
   deleteProduct,
 } from "../../api/products";
+import { changeACart } from "../../api/cart";
+import { getAllCart } from "../../api/cart";
 const {
   SET_PRODUCTS,
   SELECTED_PRODCUT,
-  REMOVE_SELECTED_PRODUCT,
   SET_NEWPRODUCTS,
   CHANGE_STATE,
+  COMPELETED_CARTS,
+  UNCOMPELETED_CARTS,
 } = ActionTypes;
 export const setProducts = (products) => {
   return {
@@ -44,6 +47,20 @@ export const changeState = () => {
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
+export const setCompeletedCarts = (carts) => {
+  return {
+    type: COMPELETED_CARTS,
+    payload: carts,
+  };
+};
+export const setUncompeletedCarts = (carts) => {
+  return {
+    type: UNCOMPELETED_CARTS,
+    payload: carts,
+  };
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////
 export const getProducts = () => async (dispatch, getState) => {
   const res = await getAllProducts();
   dispatch(setProducts(res.data));
@@ -59,8 +76,20 @@ export const addProduct = (product) => async (dispatch) => {
 };
 export const ChangeAProductById = (id, product) => async (dispatch) => {
   let res = await changeAProduct(id, product);
+  dispatch(getProducts());
 };
 export const deleteAProduct = (id) => async (dispatch) => {
   await deleteProduct(id);
   dispatch(deleteSelectedProduct(id));
+};
+export const getCarts = () => async (dispatch) => {
+  const res = await getAllCart();
+  let response = res.data.sort((a, b) => (new Date(a) < new Date(b) ? 1 : -1));
+
+  dispatch(setCompeletedCarts(response));
+  dispatch(setUncompeletedCarts(response));
+};
+export const changeCart = (id, order) => async (dispatch) => {
+  await changeACart(id, order);
+  dispatch(getCarts());
 };

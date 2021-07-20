@@ -69,7 +69,7 @@ export default function SimpleTable() {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, products?.length - page * rowsPerPage);
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.TableContainer}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>

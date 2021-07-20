@@ -9,30 +9,59 @@ import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 import { Button, Box, Typography } from "@material-ui/core";
 import { useStyles } from "../../styles/index";
-import { getAllCart } from "../../api/cart";
 import MainModal from "../MainModal";
 import CompletedOrdersModal from "./CompletedOrdersModal";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getCarts,
+  SetselectedProduct,
+  setCompeletedCarts,
+} from "../../redux/actions/productActions";
+import { TableSortLabel } from "@material-ui/core";
 
 export default function SimpleTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [orders, setOrders] = useState([]);
   const [open, setOpen] = React.useState(false);
-  const [selectedOrder, setSelectedOrder] = useState({});
+  const [sort, setSort] = useState({ direction: "asc" });
+  const dispatch = useDispatch();
+  const selectedCart = useSelector(
+    (state) => state.allProducts.selectedProduct
+  );
   useEffect(() => {
-    getAllCart().then((res) => {
-      let compeletedOrders = res.data;
-      let newOrders = compeletedOrders.filter(
-        (order) => order.compeleted === true
-      );
-      setOrders(newOrders);
-      console.log("data has fetched");
-    });
+    dispatch(getCarts());
   }, []);
+  const compareBy = (key) => {
+    return function (a, b) {
+      if (a[key] < b[key]) return -1;
+      if (a[key] > b[key]) return 1;
+      return 0;
+    };
+  };
+  const sortBy = (key) => {
+    const direction = sort
+      ? sort.direction === "asc"
+        ? "desc"
+        : "asc"
+      : "desc";
+
+    let arrayCopy = [...compeletedCarts];
+    arrayCopy.sort(compareBy(key));
+    dispatch(setCompeletedCarts(arrayCopy));
+    if (direction === "asc") {
+      arrayCopy.reverse();
+    }
+    dispatch(setCompeletedCarts(arrayCopy));
+    setSort({ direction });
+  };
+
+  const compeletedCarts = useSelector(
+    (state) => state.allProducts.compeletedCarts
+  );
   const getTotal = (products) => {
-    let prices = products.map((order, index) => order.price);
+    let prices = products?.map((order, index) => order.price);
     const total = prices
       .reduce((sum, item) => (sum += item), 0)
       .toLocaleString("fa-IR");
@@ -40,7 +69,7 @@ export default function SimpleTable() {
   };
 
   const handleClick = (order) => {
-    setSelectedOrder(order);
+    dispatch(SetselectedProduct(order));
     setOpen(true);
   };
 
@@ -56,33 +85,38 @@ export default function SimpleTable() {
     setPage(0);
   };
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, orders?.length - page * rowsPerPage);
+    rowsPerPage -
+    Math.min(rowsPerPage, compeletedCarts?.length - page * rowsPerPage);
   return (
     <>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
-          <TableHead>
+          <TableHead className={classes.tablehead}>
             <TableRow>
-              <TableCell>نام کاربر</TableCell>
-              <TableCell>مجموع مبلغ</TableCell>
-              <TableCell>زمان ثبت سفارش</TableCell>
-              <TableCell></TableCell>
+              <TableCell className={classes.headcell}>نام کاربر</TableCell>
+              <TableCell className={classes.headcell}>مجموع مبلغ</TableCell>
+              <TableCell onClick={() => sortBy("date")}>
+                <TableSortLabel direction={sort.direction} active={true}>
+                  زمان ثبت سفارش
+                </TableSortLabel>
+              </TableCell>
+              <TableCell className={classes.headcell}></TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {orders
+          <TableBody className={classes.tablebody}>
+            {compeletedCarts
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((order, index) => (
                 <TableRow key={index}>
                   <TableCell>{order.information.customerName}</TableCell>
-                  <TableCell>{getTotal(order.orders)}</TableCell>
-                  <TableCell>{order.date}</TableCell>
+                  <TableCell>{getTotal(order?.orders)}</TableCell>
+                  <TableCell>{order?.date}</TableCell>
                   <TableCell>
                     <Button
                       variant="contained"
                       color="primary"
                       className={classes.tableBtn}
-                      onClick={() => handleClick(order, order.userId)}
+                      onClick={() => handleClick(order)}
                     >
                       بررسی سفارش
                     </Button>
@@ -99,7 +133,7 @@ export default function SimpleTable() {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={orders?.length}
+          count={compeletedCarts?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
@@ -116,7 +150,7 @@ export default function SimpleTable() {
             />
           </Box>
           <Box component="div">
-            <CompletedOrdersModal order={selectedOrder} />
+            <CompletedOrdersModal />
           </Box>
         </Box>
       </MainModal>

@@ -5,12 +5,85 @@ const {
   REMOVE_SELECTED_PRODUCT,
   SET_NEWPRODUCTS,
   CHANGE_STATE,
+  COMPELETED_CARTS,
+  UNCOMPELETED_CARTS,
+  SAVED_PRODUCTS,
 } = ActionTypes;
 
 const initialState = {
   products: [{}],
   selectedProduct: {},
   showButton: false,
+  compeletedCarts: [
+    {
+      id: 8,
+      userId: 8,
+      date: "2020-03-02",
+      compeleted: true,
+      orders: [
+        {
+          productId: 1,
+          title: "Fjallraven ",
+          price: 98778978,
+          quantity: 4,
+        },
+        {
+          productId: 2,
+          title: "Slim Fit T-Shirts ",
+          price: 200000,
+          quantity: 5,
+        },
+        {
+          productId: 3,
+          title: "Mens Cotton Jacket",
+          price: 120000,
+          quantity: 6,
+        },
+      ],
+      information: {
+        customerName: "ali sahabi",
+        address: "Iran,Tehran",
+        phoneNumber: 98922222222,
+        deliveryTime: "2020-03-05",
+        "Order time": "2020-03-02",
+      },
+    },
+  ],
+  unCompeletedCarts: [
+    {
+      id: 1,
+      userId: 1,
+      date: "2020-03-02",
+      compeleted: false,
+      orders: [
+        {
+          productId: 1,
+          title: "Fjallraven ",
+          price: 98778978,
+          quantity: 4,
+        },
+        {
+          productId: 2,
+          title: "Slim Fit T-Shirts ",
+          price: 200000,
+          quantity: 5,
+        },
+        {
+          productId: 3,
+          title: "Mens Cotton Jacket",
+          price: 120000,
+          quantity: 6,
+        },
+      ],
+      information: {
+        customerName: "ali sahabi",
+        address: "Iran,Tehran",
+        phoneNumber: 98922222222,
+        deliveryTime: "2020-03-05",
+        "Order time": "2020-03-02",
+      },
+    },
+  ],
 };
 export const ProductReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -27,6 +100,18 @@ export const ProductReducer = (state = initialState, { type, payload }) => {
       };
     case CHANGE_STATE:
       return { ...state, showButton: true };
+    case COMPELETED_CARTS:
+      return {
+        ...state,
+        compeletedCarts: payload.filter((order) => order.compeleted === true),
+      };
+    case UNCOMPELETED_CARTS:
+      return {
+        ...state,
+        unCompeletedCarts: payload.filter(
+          (order) => order.compeleted === false
+        ),
+      };
     default:
       return state;
   }

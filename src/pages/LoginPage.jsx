@@ -44,7 +44,7 @@ export default function SignIn() {
         })
         .catch((err) => console.log(err));
     } else {
-      toast.error("email and password fields could not be empty");
+      toast.error("email or password is wrong");
     }
   };
   const handleChage = (e) => {

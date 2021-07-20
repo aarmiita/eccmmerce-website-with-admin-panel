@@ -1,8 +1,25 @@
+@font-face {
+  font-family: Far_Yekan;
+  src: url("../../fonts/Far_Yekan.ttf");
+}
+@font-face {
+  font-family: B-NAZANIN;
+  src: url("../../fonts/B-NAZANIN.TTF");
+}
+
 * {
+  font-family: Far_Yekan !important;
   box-sizing: border-box;
 }
 .mainContainer {
   width: 100%;
   margin: 0;
   padding: 0;
+}
+.MuiTableSortLabel-root,
+.MuiTableSortLabel-active,
+.MuiTableSortLabel-root,
+.MuiTableSortLabel-active,
+.MuiTableSortLabel-icon {
+  color: white !important;
 }

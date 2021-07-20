@@ -1,4 +1,4 @@
-import { createStyle, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import { COLORS } from "./constantVariables";
 const drawerWidth = 240;
 
@@ -40,6 +40,7 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   appBar: {
+    backgroundColor: COLORS.gray,
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -66,6 +67,8 @@ export const useStyles = makeStyles((theme) => ({
     whiteSpace: "nowrap",
   },
   drawerOpen: {
+    color: "white",
+    backgroundColor: COLORS.gray,
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -73,6 +76,8 @@ export const useStyles = makeStyles((theme) => ({
     }),
   },
   drawerClose: {
+    color: "white",
+    backgroundColor: COLORS.gray,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -82,6 +87,9 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
     },
+  },
+  adminicon: {
+    color: "white",
   },
   toolbar: {
     display: "flex",
@@ -105,7 +113,18 @@ export const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(20),
   },
   table: {
-    minWidth: 550,
+    // minWidth: 450,
+  },
+  tablebody: {
+    "&>:nth-child(even)": {
+      backgroundColor: COLORS.silver,
+    },
+  },
+  tablehead: {
+    backgroundColor: COLORS.gray,
+  },
+  headcell: {
+    color: "white",
   },
   tableImage: {
     width: 44,
@@ -246,5 +265,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   deliverymodal: {
     padding: "15px",
+  },
+  deliverybtn: {
+    backgroundColor: COLORS.green,
+    color: "white",
   },
 }));

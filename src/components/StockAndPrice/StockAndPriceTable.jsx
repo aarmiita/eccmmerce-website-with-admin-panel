@@ -11,7 +11,6 @@ import { useStyles } from "../../styles/index";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../api/products";
 import {
-  changeState,
   setProducts,
   getProducts,
   ChangeAProductById,
@@ -26,18 +25,45 @@ export default function SimpleTable() {
   const [rows, setRows] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
   const [products, setProducts] = useState([]);
+  const [showButton, setShowButton] = useState(false);
   const dispatch = useDispatch();
-  const showButton = useSelector((state) => state.allProducts.showButton);
   useEffect(() => {
     getAllProducts().then((res) => {
       setNewProducts(res.data);
-      setProducts(res.data);
       const newRows = res.data.map((item) => {
         return { id: item.id, priceEditable: false, entityEditable: false };
       });
       setRows(newRows);
+      console.log("hello");
     });
+    getAllProducts().then((res) => setProducts(res.data));
   }, []);
+  const onKeyDown = (e, product) => {
+    let names = e.target.name;
+    if (e.key === "Escape") {
+      let newP = [...newProducts];
+      newP.map((item, index) => {
+        if (item.id === product.id) {
+          item[names] = products[index][names];
+        }
+      });
+      setNewProducts(newP);
+      if (names === "price") {
+        changeEditPrice(product.id);
+      } else if (names === "stock") {
+        changeEditEntity(product.id);
+      }
+      let showSave = rows.map((item, index) =>
+        item.priceEditable === false && item.entityEditable === false
+          ? false
+          : true
+      );
+      let count = showSave.filter((item) => item == true).length;
+      if (count == 1) {
+        setShowButton(false);
+      }
+    }
+  };
 
   const changeEditPrice = (id) => {
     let newRows = [...rows];
@@ -56,7 +82,7 @@ export default function SimpleTable() {
     setRows(newRows);
   };
   const update = (e, id) => {
-    dispatch(changeState());
+    setShowButton(true);
     const values = e.target.value;
     let names = e.target.name;
     let arrays = [...newProducts];
@@ -68,18 +94,22 @@ export default function SimpleTable() {
     setNewProducts(arrays);
   };
   const saveEdit = () => {
-    // newProducts.map((item, index) => {
-    //   if (
-    //     item.price !== products[index]?.price ||
-    //     item.stock !== products[index]?.stock
-    //   ) {
-    //     dispatch(ChangeAProductById(item.id, item));
-    //   }
-    // });
-    // const newRows = newProducts.map((item) => {
-    //   return { id: item.id, priceEditable: false, entityEditable: false };
-    // });
-    // setRows(newRows);
+    let array = [];
+    newProducts.map((item, index) => {
+      if (
+        item.price !== products[index].price ||
+        item.stock !== products[index].stock
+      ) {
+        array.push(item);
+      }
+    });
+    array.map((item, index) => dispatch(ChangeAProductById(item.id, item)));
+
+    const newRows = newProducts.map((item) => {
+      return { id: item.id, priceEditable: false, entityEditable: false };
+    });
+    setRows(newRows);
+    setShowButton(false);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -111,14 +141,14 @@ export default function SimpleTable() {
       </Box>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
-          <TableHead>
+          <TableHead className={classes.tablehead}>
             <TableRow>
-              <TableCell>نام کالا</TableCell>
-              <TableCell>قیمت</TableCell>
-              <TableCell>موجودی</TableCell>
+              <TableCell className={classes.headcell}>نام کالا</TableCell>
+              <TableCell className={classes.headcell}>قیمت</TableCell>
+              <TableCell className={classes.headcell}>موجودی</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className={classes.tablebody}>
             {newProducts
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((product, index) => (
@@ -135,6 +165,7 @@ export default function SimpleTable() {
                         variant="outlined"
                         value={product.price}
                         onChange={(e) => update(e, product.id)}
+                        onKeyDown={(e) => onKeyDown(e, product)}
                       />
                     </TableCell>
                   )}
@@ -149,6 +180,7 @@ export default function SimpleTable() {
                         variant="outlined"
                         value={product.stock}
                         onChange={(e) => update(e, product.id)}
+                        onKeyDown={(e) => onKeyDown(e, product)}
                       />
                     </TableCell>
                   )}
