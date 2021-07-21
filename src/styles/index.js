@@ -1,7 +1,21 @@
 import { makeStyles } from "@material-ui/core";
 import { COLORS } from "./constantVariables";
-const drawerWidth = 240;
+import { createMuiTheme } from "@material-ui/core";
 
+const drawerWidth = 240;
+export const theme = createMuiTheme({
+  direction: "rtl",
+  overrides: {
+    MuiToolbar: {
+      regular: {
+        "@media": {
+          minHeight: "80px",
+          backgroundColor: "rgb(60,208,112)",
+        },
+      },
+    },
+  },
+});
 export const useStyles = makeStyles((theme) => ({
   header: {
     flexGrow: 1,

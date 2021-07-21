@@ -111,6 +111,9 @@ export default function SimpleTable() {
     setRows(newRows);
     setShowButton(false);
   };
+  useEffect(() => {
+    getAllProducts().then((res) => setProducts(res.data));
+  }, [saveEdit]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

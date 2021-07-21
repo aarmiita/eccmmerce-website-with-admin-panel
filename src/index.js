@@ -7,15 +7,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { create } from "jss";
-import { createMuiTheme } from "@material-ui/core";
 import rtl from "jss-rtl";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-const theme = createMuiTheme({
-  direction: "rtl",
-});
-
+import { theme } from "./styles";
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 ReactDOM.render(
