@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
 import { isLogggedIn } from "../utils/auth";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
+import logo from "../assets/images/logo.png";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -71,7 +71,7 @@ const Header = () => {
           <Toolbar>
             <Box variant="h6" className={classes.title}>
               {/* <ReactSVG src={Logo} /> */}
-              {/* <img src={logo} alt="logo" className={classes.logo} /> */}
+              <img src={logo} alt="logo" className={classes.logo} />
             </Box>
 
             <div>

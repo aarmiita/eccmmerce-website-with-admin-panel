@@ -10,7 +10,7 @@ export const theme = createMuiTheme({
       regular: {
         "@media": {
           minHeight: "80px",
-          backgroundColor: "rgb(60,208,112)",
+          backgroundColor: "#6bb927",
         },
       },
     },
