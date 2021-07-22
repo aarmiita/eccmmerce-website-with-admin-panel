@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/actions/productActions";
 import dairycategory from "../../assets/images/dairycategory.png";
 import Product from "./Product";
+import Loading from "../Loading/Loading";
 const DairyProducts = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.products);
@@ -71,9 +72,7 @@ const DairyProducts = () => {
       {dairy.length > 0 ? (
         <div className="slider-container">
           <div className="slider-container__images">
-            <h2 className="slider-container__images__title">
-              کالاهای گروه لبنیات
-            </h2>
+            <h2 className="slider-container__images__title">لبنیات</h2>
             <img
               src={dairycategory}
               alt="dairycategory"
@@ -100,7 +99,7 @@ const DairyProducts = () => {
           </Carousel>
         </div>
       ) : (
-        <span>Hello</span>
+        <Loading />
       )}
     </>
 

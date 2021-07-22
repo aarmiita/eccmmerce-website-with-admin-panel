@@ -224,14 +224,6 @@ export const useStyles = makeStyles((theme) => ({
     float: "right",
     cursor: "pointer",
   },
-  footer: {
-    overflowY: "hidden",
-    textAlign: "center",
-    position: "absolute",
-    bottom: 0,
-    height: "100",
-    backgroundColor: "#3f51b5",
-  },
   headericon: {
     fontSize: "small",
     margin: theme.spacing(0, 1),
@@ -283,5 +275,12 @@ export const useStyles = makeStyles((theme) => ({
   deliverybtn: {
     backgroundColor: COLORS.green,
     color: "white",
+  },
+  footer: {
+    flexGrow: 1,
+  },
+  footerTitle: {
+    flexGrow: 1,
+    textAlign: "center",
   },
 }));

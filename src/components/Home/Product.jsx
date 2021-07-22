@@ -14,8 +14,8 @@ import {
 const useStyles = makeStyles({
   root: {
     maxWidth: 225,
-    minHeight: 320,
-    maxHeight: 320,
+    minHeight: 310,
+    maxHeight: 310,
     margin: "5px",
   },
   media: {
@@ -30,6 +30,11 @@ const useStyles = makeStyles({
     width: 200,
     padding: 5,
     color: "white",
+  },
+  productTitle: {
+    fontSize: "14px",
+    width: "100%",
+    height: "35px",
   },
 });
 
@@ -47,8 +52,12 @@ export default function ImgMediaCard({ image, title, price }) {
           title={title}
         />
         <CardContent>
-          <Typography component="p" style={{ textAlign: "right" }}>
-            {title}
+          <Typography
+            component="p"
+            className={classes.productTitle}
+            style={{ textAlign: "right" }}
+          >
+            <strong>{title}</strong>
           </Typography>
         </CardContent>
       </CardActionArea>

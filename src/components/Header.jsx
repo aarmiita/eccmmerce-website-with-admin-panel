@@ -70,7 +70,6 @@ const Header = () => {
         <AppBar position="static">
           <Toolbar>
             <Box variant="h6" className={classes.title}>
-              {/* <ReactSVG src={Logo} /> */}
               <img src={logo} alt="logo" className={classes.logo} />
             </Box>
 

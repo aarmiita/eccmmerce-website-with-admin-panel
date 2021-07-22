@@ -21,6 +21,7 @@ function App() {
           <div className="mainContainer">
             <Header />
             <HomePage />
+            <Footer />
           </div>
         </Route>
         {/* <Route path="/admin/newadmin" exact>

@@ -1,18 +1,25 @@
 import React from "react";
-import { AppBar, Container, Toolbar, Typography } from "@material-ui/core";
-import { useStyles } from "../styles/index";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import { useStyles } from "../styles";
+
 const Footer = () => {
   const classes = useStyles();
+
   return (
-    <AppBar position="static" color="primary" className={classes.footer}>
-      <Container maxWidth="md">
+    <div className={classes.footer}>
+      <AppBar position="static">
         <Toolbar>
-          <Typography variant="body1" color="inherit">
-            © 2021 Romina Farokhzad
+          <Typography variant="h6" className={classes.footerTitle}>
+            Designed By © 2021 Romina Farokhzad
           </Typography>
         </Toolbar>
-      </Container>
-    </AppBar>
+      </AppBar>
+    </div>
   );
 };
 export default Footer;
