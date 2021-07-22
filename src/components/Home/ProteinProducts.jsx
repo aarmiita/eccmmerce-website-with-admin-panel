@@ -5,8 +5,10 @@ import Product from "./Product";
 import Carousel from "react-elastic-carousel";
 import proteinCategory from "../../assets/images/proteins.png";
 import Loading from "../Loading/Loading";
+import { useHistory } from "react-router";
 
 const ProteinProducts = () => {
+  let history = useHistory();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.products);
   const [protein, setProtein] = useState([]);
@@ -22,7 +24,6 @@ const ProteinProducts = () => {
       }
     }
     setProtein(array);
-    console.log(protein);
   }, [products]);
   const breakPoints = [
     { width: 1, itemsToShow: 1, itemsToScroll: 2 },
@@ -33,11 +34,18 @@ const ProteinProducts = () => {
     { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
     { width: 1400, itemsToShow: 4, itemsToScroll: 4 },
   ];
+  const handleClick = (category) => {
+    console.log("hello");
+    history.push(`home/${category}`);
+  };
   return (
     <>
       {protein.length > 0 ? (
         <div className="slider-container">
-          <div className="slider-container__images">
+          <div
+            className="slider-container__images"
+            onClick={() => handleClick(protein[0].category)}
+          >
             <h2 className="slider-container__images__title">
               محصولات پروتئینی
             </h2>

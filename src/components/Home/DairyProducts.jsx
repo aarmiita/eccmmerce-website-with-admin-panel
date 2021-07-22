@@ -6,7 +6,9 @@ import { getProducts } from "../../redux/actions/productActions";
 import dairycategory from "../../assets/images/dairycategory.png";
 import Product from "./Product";
 import Loading from "../Loading/Loading";
+import { useHistory } from "react-router";
 const DairyProducts = () => {
+  let history = useHistory();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.products);
   const [dairy, setDairy] = useState([]);
@@ -22,7 +24,6 @@ const DairyProducts = () => {
       }
     }
     setDairy(array);
-    console.log(dairy);
   }, [products]);
   const breakPoints = [
     { width: 1, itemsToShow: 1, itemsToScroll: 2 },
@@ -67,11 +68,18 @@ const DairyProducts = () => {
   //     },
   //   ],
   // };
+  const handleClick = (category) => {
+    console.log("hello");
+    history.push(`home/${category}`);
+  };
   return (
     <>
       {dairy.length > 0 ? (
         <div className="slider-container">
-          <div className="slider-container__images">
+          <div
+            className="slider-container__images"
+            onClick={() => handleClick(dairy[0].category)}
+          >
             <h2 className="slider-container__images__title">لبنیات</h2>
             <img
               src={dairycategory}

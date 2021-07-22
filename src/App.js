@@ -11,7 +11,7 @@ import Orders from "./pages/Orders";
 import StockAndPrice from "./pages/StockAndPrice";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
-// import ResponsiveDrawer from "./pages/layout";
+import Layouts from "./components/Category/Layouts";
 function App() {
   let history = useHistory();
   return (
@@ -24,9 +24,9 @@ function App() {
             <Footer />
           </div>
         </Route>
-        {/* <Route path="/admin/newadmin" exact>
-          <ResponsiveDrawer>Hello</ResponsiveDrawer>
-        </Route> */}
+        <Route path="/home/:category">
+          <Layouts />
+        </Route>
         <Route path="/admin/login" exact component={SignIn} />
         <ProtectedRoute
           path="/admin/dashboard"

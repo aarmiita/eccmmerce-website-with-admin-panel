@@ -6,7 +6,10 @@ import { getProducts } from "../../redux/actions/productActions";
 import drinksCategory from "../../assets/images/drinks.png";
 import Product from "./Product";
 import Loading from "../Loading/Loading";
+import { useHistory } from "react-router";
+
 const DrinksProducts = () => {
+  let history = useHistory();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.products);
   const [drinks, setDrinks] = useState([]);
@@ -21,7 +24,6 @@ const DrinksProducts = () => {
       }
     }
     setDrinks(array);
-    console.log(drinks);
   }, [products]);
   const breakPoints = [
     { width: 1, itemsToShow: 1, itemsToScroll: 2 },
@@ -32,11 +34,18 @@ const DrinksProducts = () => {
     { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
     { width: 1400, itemsToShow: 4, itemsToScroll: 4 },
   ];
+  const handleClick = (category) => {
+    console.log("hello");
+    history.push(`home/${category}`);
+  };
   return (
     <>
       {drinks.length > 0 ? (
         <div className="slider-container">
-          <div className="slider-container__images">
+          <div
+            className="slider-container__images"
+            onClick={() => handleClick(drinks[0].category)}
+          >
             <h2 className="slider-container__images__title">نوشیدنی</h2>
             <img
               src={drinksCategory}

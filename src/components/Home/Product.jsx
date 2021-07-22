@@ -38,11 +38,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard({ image, title, price }) {
+export default function ImgMediaCard({ image, title, price, onClick }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={onClick}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
