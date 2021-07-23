@@ -325,8 +325,6 @@ export const useStyles = makeStyles((theme) => ({
   CategoryContent: {
     width: "100%",
     height: "100%",
-    flexGrow: 1,
-    padding: theme.spacing(3),
   },
   categoryList: {
     marginTop: 5,
@@ -344,5 +342,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   categorySmall: {
     fontWeight: "bold",
+  },
+  categoryBox: {
+    display: "flex",
+    flexDirection: "row",
   },
 }));
