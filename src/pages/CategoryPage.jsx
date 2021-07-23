@@ -59,7 +59,6 @@ export default function ClippedDrawer() {
       </Hidden>
       <main className={classes.CategoryContent}>
         <Toolbar />
-
         <Categories />
       </main>
     </div>

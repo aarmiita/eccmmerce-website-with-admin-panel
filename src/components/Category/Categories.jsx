@@ -13,24 +13,32 @@ const Categories = () => {
   );
   useEffect(() => {
     dispatch(setCategory(category));
-    console.log("hello");
   }, []);
 
   return (
     <div
       style={{
+        width: "100%",
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
         padding: "20px",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <Category />
-      <Category />
-      <Category />
-      <Category />
-      <Category />
-      <Category />
+      {productsByCategory.length > 0 ? (
+        productsByCategory?.map((item, index) => (
+          <Category
+            key={index}
+            image={item.image}
+            title={item.title}
+            price={item.price}
+          />
+        ))
+      ) : (
+        <div>Hello</div>
+      )}
     </div>
   );
 };
