@@ -23,7 +23,6 @@ const Categories = () => {
         flexDirection: "row",
         flexWrap: "wrap",
         padding: "20px",
-        backgroundColor: "red",
       }}
     >
       <Category />

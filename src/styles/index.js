@@ -323,11 +323,9 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   CategoryContent: {
-    backgroundColor: "blue",
     width: "100%",
     height: "100%",
-    // flexGrow: 1,
-    // backgroundColor: theme.palette.background.default,
+    flexGrow: 1,
     padding: theme.spacing(3),
   },
   categoryList: {

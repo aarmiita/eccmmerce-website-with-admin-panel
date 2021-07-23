@@ -58,7 +58,7 @@ export default function ClippedDrawer() {
         </Drawer>
       </Hidden>
       <main className={classes.CategoryContent}>
-        <Toolbar style={{ backgroundColor: "red" }} />
+        <Toolbar />
 
         <Categories />
       </main>
