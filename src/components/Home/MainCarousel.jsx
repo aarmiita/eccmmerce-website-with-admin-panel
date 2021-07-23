@@ -17,28 +17,33 @@ const MainCarousel = () => {
     slidesToScroll: 1,
   };
   return (
-    <div className="main-carousel">
-      <div className="main-carousel__carousel">
-        <Carousel showArrows={false} showThumbs={false} showStatus={false}>
-          <div className="main-carousel__carousel__div">
-            <img className="main-carousel__carousel__div__img" src={slider6} />
-          </div>
-        </Carousel>
-      </div>
-      <div className="main-carousel__banners">
-        <div className="main-carousel__banners__div">
-          <img
-            className="main-carousel__banners__div__img"
-            src={banner2}
-            alt="bannet2"
-          />
+    <div className="carousel_container">
+      <div className="main-carousel">
+        <div className="main-carousel__carousel">
+          <Carousel showArrows={false} showThumbs={false} showStatus={false}>
+            <div className="main-carousel__carousel__div">
+              <img
+                className="main-carousel__carousel__div__img"
+                src={slider6}
+              />
+            </div>
+          </Carousel>
         </div>
-        <div className="main-carousel__banners__div">
-          <img
-            className="main-carousel__banners__div__img"
-            src={banner3}
-            alt="banner3"
-          />
+        <div className="main-carousel__banners">
+          <div className="main-carousel__banners__div">
+            <img
+              className="main-carousel__banners__div__img"
+              src={banner2}
+              alt="bannet2"
+            />
+          </div>
+          <div className="main-carousel__banners__div">
+            <img
+              className="main-carousel__banners__div__img"
+              src={banner3}
+              alt="banner3"
+            />
+          </div>
         </div>
       </div>
     </div>

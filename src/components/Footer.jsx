@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <div className={classes.footer}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.footerMain}>
         <Toolbar>
           <Typography variant="h6" className={classes.footerTitle}>
             Designed By © 2021 Romina Farokhzad

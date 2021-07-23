@@ -75,36 +75,38 @@ const DairyProducts = () => {
   return (
     <>
       {dairy.length > 0 ? (
-        <div className="slider-container">
-          <div
-            className="slider-container__images"
-            onClick={() => handleClick(dairy[0].category)}
-          >
-            <h2 className="slider-container__images__title">لبنیات</h2>
-            <img
-              src={dairycategory}
-              alt="dairycategory"
-              className="slider-container__images__img"
-            />
+        <div className="slider_main">
+          <div className="slider-container">
+            <div
+              className="slider-container__images"
+              onClick={() => handleClick(dairy[0].category)}
+            >
+              <h2 className="slider-container__images__title">لبنیات</h2>
+              <img
+                src={dairycategory}
+                alt="dairycategory"
+                className="slider-container__images__img"
+              />
+            </div>
+            <Carousel
+              breakPoints={breakPoints}
+              disableArrowsOnEnd={false}
+              pagination={false}
+              isRTL={true}
+              // {...settings}
+              className="slider-container____sliders"
+            >
+              {dairy?.map((item, index) => {
+                return (
+                  <Product
+                    image={item.image}
+                    title={item.title}
+                    price={item.price}
+                  />
+                );
+              })}
+            </Carousel>
           </div>
-          <Carousel
-            breakPoints={breakPoints}
-            disableArrowsOnEnd={false}
-            pagination={false}
-            isRTL={true}
-            // {...settings}
-            className="slider-container____sliders"
-          >
-            {dairy?.map((item, index) => {
-              return (
-                <Product
-                  image={item.image}
-                  title={item.title}
-                  price={item.price}
-                />
-              );
-            })}
-          </Carousel>
         </div>
       ) : (
         <Loading />

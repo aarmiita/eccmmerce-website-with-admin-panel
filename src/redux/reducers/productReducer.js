@@ -8,6 +8,7 @@ const {
   COMPELETED_CARTS,
   UNCOMPELETED_CARTS,
   SAVED_PRODUCTS,
+  SET_PRODUCTS_BY_CATEGORY,
 } = ActionTypes;
 
 const initialState = {
@@ -84,6 +85,7 @@ const initialState = {
       },
     },
   ],
+  productsByCategory: {},
 };
 export const ProductReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -110,6 +112,13 @@ export const ProductReducer = (state = initialState, { type, payload }) => {
         ...state,
         unCompeletedCarts: payload.filter(
           (order) => order.compeleted === false
+        ),
+      };
+    case SET_PRODUCTS_BY_CATEGORY:
+      return {
+        ...state,
+        productsByCategory: state.products.filter(
+          (item) => item.category === payload
         ),
       };
     default:

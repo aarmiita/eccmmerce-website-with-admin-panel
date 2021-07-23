@@ -10,7 +10,6 @@ export const theme = createMuiTheme({
       regular: {
         "@media": {
           minHeight: "80px",
-          backgroundColor: "#6bb927",
         },
       },
     },
@@ -18,17 +17,34 @@ export const theme = createMuiTheme({
 });
 export const useStyles = makeStyles((theme) => ({
   header: {
+    display: "flex",
     flexGrow: 1,
+    minHeight: "300",
   },
-  menuButton: {
+  headerbtn: {
     marginRight: theme.spacing(2),
   },
-  navitem: {
-    textDecoration: "none",
+  mainheader: {
+    backgroundColor: COLORS.darkGreen,
+
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  headertitle: {
+    display: "flex",
+    flexDirection: "row",
+    flexGrow: 1,
+  },
+  logo: {
+    cursor: "pointer",
+    width: 100,
     color: "white",
   },
-  title: {
-    flexGrow: 1,
+  headericon: {
+    fontSize: "small",
+    margin: theme.spacing(0, 1),
+  },
+  drawerPaper: {
+    width: drawerWidth,
   },
   paper: {
     marginTop: theme.spacing(8),
@@ -91,7 +107,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   drawerClose: {
     color: "white",
-    backgroundColor: COLORS.gray,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -101,6 +116,7 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
     },
+    backgroundColor: COLORS.gray,
   },
   adminicon: {
     color: "white",
@@ -282,5 +298,53 @@ export const useStyles = makeStyles((theme) => ({
   footerTitle: {
     flexGrow: 1,
     textAlign: "center",
+  },
+  footerMain: {
+    backgroundColor: COLORS.darkGreen,
+  },
+  categoryRoot: {
+    display: "flex",
+  },
+  categoryDrawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  categoryDrawerPaper: {
+    width: drawerWidth,
+  },
+  drawerContainer: {
+    marginTop: 18,
+    overflow: "auto",
+  },
+  toolbar: {
+    ...theme.mixins.toolbar,
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  CategoryContent: {
+    backgroundColor: "blue",
+    width: "100%",
+    height: "100%",
+    // flexGrow: 1,
+    // backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
+  },
+  categoryList: {
+    marginTop: 5,
+    marginLeft: 10,
+    marginBottom: 10,
+  },
+  subCategory: {
+    marginTop: 4,
+    marginLeft: 25,
+    marginRight: 25,
+    marginBottom: 25,
+  },
+  categoryStrong: {
+    fontSize: 20,
+  },
+  categorySmall: {
+    fontWeight: "bold",
   },
 }));

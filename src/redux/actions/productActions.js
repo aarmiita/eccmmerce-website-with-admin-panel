@@ -15,6 +15,7 @@ const {
   CHANGE_STATE,
   COMPELETED_CARTS,
   UNCOMPELETED_CARTS,
+  SET_PRODUCTS_BY_CATEGORY,
 } = ActionTypes;
 export const setProducts = (products) => {
   return {
@@ -59,6 +60,12 @@ export const setUncompeletedCarts = (carts) => {
     payload: carts,
   };
 };
+export const setProductsByCategory = (category) => {
+  return {
+    type: SET_PRODUCTS_BY_CATEGORY,
+    payload: category,
+  };
+};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 export const getProducts = () => async (dispatch, getState) => {
@@ -92,4 +99,10 @@ export const getCarts = () => async (dispatch) => {
 export const changeCart = (id, order) => async (dispatch) => {
   await changeACart(id, order);
   dispatch(getCarts());
+};
+export const setCategory = (category) => async (dispatch) => {
+  const res = await getAllProducts();
+  let response = res.data.sort((a, b) => (new Date(a) < new Date(b) ? 1 : -1));
+  dispatch(setProducts(response));
+  dispatch(setProductsByCategory(category));
 };

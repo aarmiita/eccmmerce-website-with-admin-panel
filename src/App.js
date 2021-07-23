@@ -11,7 +11,10 @@ import Orders from "./pages/Orders";
 import StockAndPrice from "./pages/StockAndPrice";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
-import Layouts from "./components/Category/Layouts";
+import CategoryPage from "./pages/CategoryPage";
+import { StateProvider } from "./context/StateContext";
+import ProductDetailesPage from "./pages/ProductDetailesPage";
+import CartPage from "./pages/CartPage";
 function App() {
   let history = useHistory();
   return (
@@ -24,9 +27,22 @@ function App() {
             <Footer />
           </div>
         </Route>
+
         <Route path="/home/:category">
-          <Layouts />
+          <StateProvider>
+            <Header />
+            <CategoryPage />
+          </StateProvider>
         </Route>
+        <Route path="/home/:category/:id">
+          <Header />
+          <ProductDetailesPage />
+        </Route>
+        <Route path="/home/cart">
+          <Header />
+          <CartPage />
+        </Route>
+
         <Route path="/admin/login" exact component={SignIn} />
         <ProtectedRoute
           path="/admin/dashboard"
