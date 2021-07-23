@@ -22,7 +22,6 @@ const Categories = () => {
     <Box component="div" className={classes.categoryBox}>
       <Box>
         <Box></Box>
-        <Box></Box>
       </Box>
       <Box
         style={{
