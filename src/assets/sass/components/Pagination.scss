@@ -1,0 +1,29 @@
+.center {
+  text-align: center;
+}
+
+.pagination {
+  list-style: none;
+  display: inline-block;
+  margin: auto;
+}
+
+.pagination li {
+  cursor: pointer;
+  color: black;
+  float: right;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.pagination li.active {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination li:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}

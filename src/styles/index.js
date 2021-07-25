@@ -5,15 +5,6 @@ import { createMuiTheme } from "@material-ui/core";
 const drawerWidth = 240;
 export const theme = createMuiTheme({
   direction: "rtl",
-  overrides: {
-    MuiToolbar: {
-      regular: {
-        "@media": {
-          minHeight: "80px",
-        },
-      },
-    },
-  },
 });
 export const useStyles = makeStyles((theme) => ({
   header: {
@@ -104,6 +95,19 @@ export const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    [theme.breakpoints.down("sm")]: {
+      color: "white",
+      transition: theme.transitions.create("width", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      overflowX: "hidden",
+      width: theme.spacing(7) + 1,
+      [theme.breakpoints.up("sm")]: {
+        width: theme.spacing(9) + 1,
+      },
+      backgroundColor: COLORS.gray,
+    },
   },
   drawerClose: {
     color: "white",
@@ -117,6 +121,15 @@ export const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9) + 1,
     },
     backgroundColor: COLORS.gray,
+    [theme.breakpoints.up("md")]: {
+      color: "white",
+      backgroundColor: COLORS.gray,
+      width: drawerWidth,
+      transition: theme.transitions.create("width", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
   },
   adminicon: {
     color: "white",
@@ -132,6 +145,7 @@ export const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    minWidth: 310,
   },
   mainDashboard: {
     margin: theme.spacing(10, 0, 0, 30),
@@ -143,7 +157,8 @@ export const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(20),
   },
   table: {
-    // minWidth: 450,
+    minWidth: 450,
+    overflowX: "auto",
   },
   tablebody: {
     "&>:nth-child(even)": {
@@ -227,6 +242,7 @@ export const useStyles = makeStyles((theme) => ({
     maxHeight: 600,
     minHeight: 400,
   },
+
   backtoSite: {
     marginLeft: "auto",
     margin: theme.spacing(0, 5),
@@ -255,6 +271,17 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
+  ordersDiv: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+    },
   },
   checkorders: {
     display: "flex",
@@ -318,9 +345,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     ...theme.mixins.toolbar,
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
   },
   CategoryContent: {
     width: "100%",
@@ -345,6 +369,120 @@ export const useStyles = makeStyles((theme) => ({
   },
   categoryBox: {
     display: "flex",
+    flexDirection: "column",
+  },
+  categoriesBox: {
+    width: "100%",
+    display: "flex",
     flexDirection: "row",
+    flexWrap: "wrap",
+    padding: "10px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  detailesMain: {
+    marginTop: 10,
+  },
+  detailesCard: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    width: "100%",
+    maxHeight: 500,
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
+  detailesImage: {
+    width: 400,
+    height: 400,
+    [theme.breakpoints.down("xs")]: {
+      width: 300,
+      height: 300,
+    },
+  },
+  detailesActions: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+  detailesContent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+  },
+  detailesbtn: {
+    backgroundColor: COLORS.green,
+    color: "#f5f5f5",
+  },
+  detailesInput: {
+    width: 80,
+    height: 55,
+  },
+  tabRoot: {
+    padding: 20,
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+  tabContent: {
+    background: COLORS.darkGreen,
+    borderRadius: 8,
+  },
+  tabPanel: {
+    backgroundColor: "white",
+  },
+  cartDiv: {
+    margin: "auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    maxWidth: 800,
+    marginTop: 40,
+    marginBottom: 40,
+    padding: 20,
+  },
+  cartBox: {
+    marginTop: 20,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  cartTableBtn: {
+    backgroundColor: COLORS.green,
+    color: "white",
+  },
+  totalDiv: {
+    width: "max-content",
+  },
+  detailesModal: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    width: 400,
+    height: 200,
+  },
+  categoryFilter: {
+    width: "100%",
+    margin: 10,
+    padding: 10,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-Start",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
+  categoryFiltersBox: {
+    width: 200,
+    margin: 10,
   },
 }));

@@ -21,7 +21,7 @@ const OrdersTable = () => {
     <div>
       <div className={classes.ordersTable}>
         <h1>مدیریت سفارش ها</h1>
-        <div>
+        <div className={classes.ordersDiv}>
           <Checkbox
             checked={checked}
             onChange={handleChange}

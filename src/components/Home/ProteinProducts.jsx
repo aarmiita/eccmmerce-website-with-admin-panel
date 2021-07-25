@@ -70,6 +70,7 @@ const ProteinProducts = () => {
                     image={item.image}
                     title={item.title}
                     price={item.price}
+                    onClick={() => history.push(`/home/protein/${item.id}`)}
                   />
                 );
               })}

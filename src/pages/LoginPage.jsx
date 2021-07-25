@@ -36,7 +36,7 @@ export default function SignIn() {
   const handleLogin = (e) => {
     e.preventDefault();
     console.log("Hrllo");
-    if ((email, password)) {
+    if (email && password && email === "eve.holt@reqres.in") {
       login(email, password)
         .then((res) => {
           localStorage.setItem("token", res.data.token);

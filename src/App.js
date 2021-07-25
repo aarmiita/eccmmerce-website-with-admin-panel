@@ -27,22 +27,24 @@ function App() {
             <Footer />
           </div>
         </Route>
+        <Route path="/home/cart" exact>
+          <Header />
+          <CartPage />
+          <Footer />
+        </Route>
+        <Route path="/home/:category/:id" exact>
+          <Header />
+          <ProductDetailesPage />
+          <Footer />
+        </Route>
 
-        <Route path="/home/:category">
+        <Route path="/home/:category" exact>
           <StateProvider>
             <Header />
             <CategoryPage />
+            <Footer />
           </StateProvider>
         </Route>
-        <Route path="/home/:category/:id">
-          <Header />
-          <ProductDetailesPage />
-        </Route>
-        <Route path="/home/cart">
-          <Header />
-          <CartPage />
-        </Route>
-
         <Route path="/admin/login" exact component={SignIn} />
         <ProtectedRoute
           path="/admin/dashboard"

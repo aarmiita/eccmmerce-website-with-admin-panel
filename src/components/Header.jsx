@@ -38,7 +38,7 @@ const Header = (props) => {
   const theme = useTheme();
   const container =
     window !== undefined ? () => window().document.body : undefined;
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const locations = history.location.pathname;
   useEffect(() => {
     if (
@@ -88,6 +88,7 @@ const Header = (props) => {
   };
   const handleCartClick = () => {
     setAnchorEl(null);
+    history.push("/home/cart");
   };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -128,7 +129,7 @@ const Header = (props) => {
                       <Drawer
                         container={container}
                         variant="temporary"
-                        anchor={theme.direction === "rtl" ? "left" : "right"}
+                        anchor={theme.direction === "rtl" ? "right" : "left"}
                         open={mobileOpen}
                         onClose={handleDrawerToggle}
                         classes={{
@@ -148,6 +149,7 @@ const Header = (props) => {
                           <Button
                             className={classes.headertoolbar}
                             color="inherit"
+                            onClick={() => handleCartClick()}
                           >
                             <ShoppingCartIcon className={classes.headericon} />
                             سبد خرید
@@ -198,7 +200,11 @@ const Header = (props) => {
                   <Button color="inherit" onClick={() => handleManageClick()}>
                     مدیریت
                   </Button>
-                  <Button className={classes.headertoolbar} color="inherit">
+                  <Button
+                    className={classes.headertoolbar}
+                    color="inherit"
+                    onClick={() => handleCartClick()}
+                  >
                     <ShoppingCartIcon className={classes.headericon} />
                     سبد خرید
                   </Button>

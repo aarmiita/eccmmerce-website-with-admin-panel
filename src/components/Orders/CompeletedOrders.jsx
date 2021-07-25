@@ -23,7 +23,7 @@ import { TableSortLabel } from "@material-ui/core";
 export default function SimpleTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [open, setOpen] = React.useState(false);
   const [sort, setSort] = useState({ direction: "asc" });
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ export default function SimpleTable() {
     (state) => state.allProducts.compeletedCarts
   );
   const getTotal = (products) => {
-    let prices = products?.map((order, index) => order.price);
+    let prices = products?.map((order) => order.price * order.quantity);
     const total = prices
       .reduce((sum, item) => (sum += item), 0)
       .toLocaleString("fa-IR");
@@ -141,18 +141,20 @@ export default function SimpleTable() {
         />
       </TableContainer>
       <MainModal open={open} handleClose={handleClose}>
-        <Box component="div" className={classes.deliverymodal}>
-          <Box component="div" className={classes.checkorders}>
-            <Typography variant="h6">نمایش سفارش</Typography>
-            <CancelIcon
-              className={classes.closeModalIcon}
-              onClick={handleClose}
-            />
+        <div className={classes.modalContent}>
+          <Box component="div" className={classes.deliverymodal}>
+            <Box component="div" className={classes.checkorders}>
+              <Typography variant="h6">نمایش سفارش</Typography>
+              <CancelIcon
+                className={classes.closeModalIcon}
+                onClick={handleClose}
+              />
+            </Box>
+            <Box component="div">
+              <CompletedOrdersModal />
+            </Box>
           </Box>
-          <Box component="div">
-            <CompletedOrdersModal />
-          </Box>
-        </Box>
+        </div>
       </MainModal>
     </>
   );

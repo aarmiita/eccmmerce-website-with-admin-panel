@@ -9,6 +9,7 @@ const {
   UNCOMPELETED_CARTS,
   SAVED_PRODUCTS,
   SET_PRODUCTS_BY_CATEGORY,
+  SET_TEMPORARAY_CART,
 } = ActionTypes;
 
 const initialState = {
@@ -86,6 +87,7 @@ const initialState = {
     },
   ],
   productsByCategory: {},
+  temporaryCart: { orders: [] },
 };
 export const ProductReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -121,6 +123,8 @@ export const ProductReducer = (state = initialState, { type, payload }) => {
           (item) => item.category === payload
         ),
       };
+    case SET_TEMPORARAY_CART:
+      return { ...state, temporaryCart: payload };
     default:
       return state;
   }

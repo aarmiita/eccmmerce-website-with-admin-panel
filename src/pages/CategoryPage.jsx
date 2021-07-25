@@ -14,16 +14,33 @@ import {
 import Categories from "../components/Category/Categories";
 import { StateContext } from "../context/StateContext";
 import { useStyles } from "../styles";
-
+import { useHistory } from "react-router";
 export default function ClippedDrawer() {
+  let history = useHistory();
   const { categories } = useContext(StateContext);
   const classes = useStyles();
+  const handleGoToCategory = (title) => {
+    if (title === "لبنیات") {
+      history.push("/home/dairy");
+      window.location.reload();
+    } else if (title === "محصولات پروتئینی") {
+      history.push("/home/protein");
+      window.location.reload();
+    } else if (title === "نوشیدنی") {
+      history.push("/home/drinks");
+      window.location.reload();
+    }
+  };
   const renderedList = categories.map((item, index) => {
     return (
       <>
         <div className={classes.categoryToolbar} />
         <List className={classes.categoryList}>
-          <ListItemText key={index}>
+          <ListItemText
+            key={index}
+            onClick={() => handleGoToCategory(item.name)}
+            style={{ cursor: "pointer" }}
+          >
             <strong className={classes.categoryStrong}>{item.name}</strong>
           </ListItemText>
           {item.subCategory.map((category, index) => {
@@ -43,7 +60,7 @@ export default function ClippedDrawer() {
   return (
     <div className={classes.categoryRoot}>
       <CssBaseline />
-      <Hidden smDown>
+      <Hidden xsDown>
         <Drawer
           className={classes.categoryDrawer}
           variant="permanent"
@@ -58,7 +75,7 @@ export default function ClippedDrawer() {
         </Drawer>
       </Hidden>
       <main className={classes.CategoryContent}>
-        <Toolbar />
+        <div className={classes.toolbar} />
         <Categories />
       </main>
     </div>

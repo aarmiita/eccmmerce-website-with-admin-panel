@@ -15,13 +15,12 @@ import {
   getProducts,
   ChangeAProductById,
 } from "../../redux/actions/productActions";
-import { TextField } from "@material-ui/core";
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, Typography, TextField } from "@material-ui/core";
 import SaveAltIcon from "@material-ui/icons/SaveAlt";
 export default function SimpleTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [rows, setRows] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
   const [products, setProducts] = useState([]);
@@ -129,7 +128,8 @@ export default function SimpleTable() {
   return (
     <div>
       <Box component="div" className={classes.tableDiv}>
-        <h1>مدیریت موجودی و قیمت ها</h1>
+        <h2>مدیریت موجودی و قیمت ها</h2>
+
         {showButton && (
           <Button
             variant="contained"

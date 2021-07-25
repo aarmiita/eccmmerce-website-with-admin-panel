@@ -16,6 +16,7 @@ const {
   COMPELETED_CARTS,
   UNCOMPELETED_CARTS,
   SET_PRODUCTS_BY_CATEGORY,
+  SET_TEMPORARAY_CART,
 } = ActionTypes;
 export const setProducts = (products) => {
   return {
@@ -66,6 +67,12 @@ export const setProductsByCategory = (category) => {
     payload: category,
   };
 };
+export const setTemporaryCart = (cart) => {
+  return {
+    type: SET_TEMPORARAY_CART,
+    payload: cart,
+  };
+};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 export const getProducts = () => async (dispatch, getState) => {
@@ -103,6 +110,24 @@ export const changeCart = (id, order) => async (dispatch) => {
 export const setCategory = (category) => async (dispatch) => {
   const res = await getAllProducts();
   let response = res.data.sort((a, b) => (new Date(a) < new Date(b) ? 1 : -1));
+  dispatch(setProducts(response));
+  dispatch(setProductsByCategory(category));
+};
+export const setSortedCategory = (category, sortName) => async (dispatch) => {
+  const res = await getAllProducts();
+  let response = res.data.sort((a, b) =>
+    sortName === "lowestPrice"
+      ? a.price < b.price
+        ? 1
+        : -1
+      : sortName === "highestPrice"
+      ? a.price > b.price
+        ? 1
+        : -1
+      : new Date(a) < new Date(b)
+      ? 1
+      : -1
+  );
   dispatch(setProducts(response));
   dispatch(setProductsByCategory(category));
 };

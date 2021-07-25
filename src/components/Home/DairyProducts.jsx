@@ -102,6 +102,7 @@ const DairyProducts = () => {
                     image={item.image}
                     title={item.title}
                     price={item.price}
+                    onClick={() => history.push(`/home/dairy/${item.id}`)}
                   />
                 );
               })}

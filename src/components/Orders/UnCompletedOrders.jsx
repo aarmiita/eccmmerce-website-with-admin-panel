@@ -20,7 +20,7 @@ import {
 export default function SimpleTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [orders, setOrders] = useState([]);
   const [openDelivery, setOpenDelivery] = React.useState(false);
   const [sort, setSort] = useState({ direction: "asc" });
@@ -137,18 +137,20 @@ export default function SimpleTable() {
         />
       </TableContainer>
       <MainModal open={openDelivery} handleClose={handleClose}>
-        <Box component="div" className={classes.deliverymodal}>
-          <Box component="div" className={classes.checkorders}>
-            <Typography variant="h6">نمایش سفارش</Typography>
-            <CancelIcon
-              className={classes.closeModalIcon}
-              onClick={handleClose}
-            />
+        <div className={classes.modalContent}>
+          <Box component="div" className={classes.deliverymodal}>
+            <Box component="div" className={classes.checkorders}>
+              <Typography variant="h6">نمایش سفارش</Typography>
+              <CancelIcon
+                className={classes.closeModalIcon}
+                onClick={handleClose}
+              />
+            </Box>
+            <Box component="div">
+              <UnCompletedOrdersModal closeModal={handleClose} />
+            </Box>
           </Box>
-          <Box component="div">
-            <UnCompletedOrdersModal closeModal={handleClose} />
-          </Box>
-        </Box>
+        </div>
       </MainModal>
     </>
   );

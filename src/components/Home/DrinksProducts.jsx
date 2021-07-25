@@ -68,6 +68,7 @@ const DrinksProducts = () => {
                     image={item.image}
                     title={item.title}
                     price={item.price}
+                    onClick={() => history.push(`/home/drinks/${item.id}`)}
                   />
                 );
               })}

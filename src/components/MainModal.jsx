@@ -48,7 +48,7 @@ export default function TransitionsModal({ children, open, handleClose }) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.modalContent}>{children}</div>
+          <div>{children}</div>
         </Fade>
       </Modal>
     </div>
