@@ -38,6 +38,7 @@ const Categories = () => {
   useEffect(() => {
     dispatch(setCategory(category));
   }, []);
+
   useEffect(() => {
     if (productsByCategory.length > 0) {
       const indexOfLastPost = currentPage * postsPerPage;
@@ -48,7 +49,7 @@ const Categories = () => {
       );
       setCurrentPosts(newProducts);
     }
-  }, [productsByCategory, currentPage, sort]);
+  }, [productsByCategory, currentPage, sort, postsPerPage]);
 
   //Change Page
   const paginate = (pageNumber) => {
