@@ -475,6 +475,7 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-Start",
+    maxWidth: "70%",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       justifyContent: "center",
