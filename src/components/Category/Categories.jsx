@@ -39,22 +39,23 @@ const Categories = () => {
     dispatch(setCategory(category));
   }, []);
 
-  useEffect(() => {
-    if (productsByCategory.length > 0) {
-      const indexOfLastPost = currentPage * postsPerPage;
-      const indexOfFirstPost = indexOfLastPost - postsPerPage;
-      const newProducts = productsByCategory?.slice(
-        indexOfFirstPost,
-        indexOfLastPost
-      );
-      setCurrentPosts(newProducts);
-    }
-  }, [productsByCategory, currentPage, sort, postsPerPage]);
+  // useEffect(() => {
+  //   if (productsByCategory.length > 0) {
+  //     const indexOfLastPost = currentPage * postsPerPage;
+  //     const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  //     const newProducts = productsByCategory?.slice(
+  //       indexOfFirstPost,
+  //       indexOfLastPost
+  //     );
+  //     setCurrentPosts(newProducts);
+  //   }
+  // }, [productsByCategory, currentPage, sort]);
 
+  //Get current post
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
   //Change Page
   const paginate = (pageNumber) => {
-    history.push(history.location.pathname);
-    console.log("hello");
     setCurrentPage(pageNumber);
   };
   const handleGoToDetailes = (id, category) => {
@@ -64,11 +65,19 @@ const Categories = () => {
   const handleChange = (event) => {
     setSort(event.target.value);
     let value = event.target.value;
-    if (sort !== "") {
-      dispatch(setSortedCategory(category, value));
-    } else {
-      console.log("hi");
-    }
+    productsByCategory.sort((a, b) =>
+      value === "lowestPrice"
+        ? a.price > b.price
+          ? 1
+          : -1
+        : value === "highestPrice"
+        ? a.price < b.price
+          ? 1
+          : -1
+        : new Date(a) < new Date(b)
+        ? 1
+        : -1
+    );
   };
   return (
     <Box component="div" className={classes.categoryBox}>
@@ -113,8 +122,9 @@ const Categories = () => {
         }}
       >
         {productsByCategory.length > 0 ? (
-          currentPosts
-            ?.filter((val) => {
+          // currentPosts
+          productsByCategory
+            .filter((val) => {
               if (search === "") {
                 return val;
               } else if (
@@ -123,6 +133,7 @@ const Categories = () => {
                 return val;
               }
             })
+            .slice(indexOfFirstPost, indexOfLastPost)
             .map((item, index) => (
               <Category
                 key={index}
