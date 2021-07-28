@@ -17,7 +17,10 @@ import { toast, ToastContainer } from "react-toastify";
 import MainModal from "./../MainModal";
 const Detailes = () => {
   const classes = useStyles();
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+  const orders = JSON.stringify({ orders: [] });
+  const cartFromLocalStorage = JSON.parse(
+    localStorage.getItem("cart") || orders
+  );
   const { id } = useParams();
   const [detailes, setDetailes] = useState({});
   const [category, setCategory] = useState("");
@@ -39,6 +42,7 @@ const Detailes = () => {
       setPrice(newPrice);
     });
     localStorage.setItem("cart", JSON.stringify(newCart));
+    console.log(newCart);
   }, []);
 
   const updateNumbers = (e) => {
@@ -51,10 +55,12 @@ const Detailes = () => {
     }
   };
   const handleAddToCart = (detailes) => {
-    let tempCart = [...newCart];
-    let tempIndex = newCart.findIndex((item) => item.productId === detailes.id);
+    let tempCart = { ...newCart };
+    let tempIndex = newCart.orders.findIndex(
+      (item) => item.productId === detailes.id
+    );
     // console.log(tempIndex);
-    let tempItem = newCart[tempIndex];
+    let tempItem = newCart.orders[tempIndex];
     // console.log(tempItem);
     if (tempIndex === -1) {
       let newItem = {
@@ -63,7 +69,9 @@ const Detailes = () => {
         price: detailes.price,
         quantity: Number(numbers),
       };
-      tempCart = [...tempCart, newItem];
+      tempCart.orders = [...newCart.orders, newItem];
+      // console.log(tempCart);
+      // tempCart = [...tempCart, newItem];
       setNewCart(tempCart);
       localStorage.setItem("cart", JSON.stringify(tempCart));
       console.log("fnished");
@@ -74,7 +82,7 @@ const Detailes = () => {
         toast.error("شما نمیتوانید از موجودی محصول بیشتر سفارش دهید ");
       } else {
         tempItem.quantity = newQuantity;
-        tempCart[tempIndex] = tempItem;
+        tempCart.orders[tempIndex] = tempItem;
         setNewCart(tempCart);
         localStorage.setItem("cart", JSON.stringify(tempCart));
         console.log("fnished part 2 ");

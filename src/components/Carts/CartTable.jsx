@@ -14,7 +14,10 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import { CallMissedSharp } from "@material-ui/icons";
 const CartTable = () => {
   const classes = useStyles();
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+  const orders = JSON.stringify({ orders: [] });
+  const cartFromLocalStorage = JSON.parse(
+    localStorage.getItem("cart") || orders
+  );
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [open, setOpen] = useState(false);
@@ -31,7 +34,7 @@ const CartTable = () => {
   };
   useEffect(() => {
     console.log(cart);
-    getTotal(cart);
+    getTotal(cart.orders);
   }, []);
 
   const handleClose = () => {
@@ -51,12 +54,13 @@ const CartTable = () => {
     setOpen(true);
   };
   const handleYes = () => {
-    let tempCart = [...cart];
-    let newCart = tempCart.filter(
+    let tempCart = { ...cart };
+    let newCart = tempCart.orders.filter(
       (item) => item.productId !== selectedOrder.productId
     );
-    localStorage.setItem("cart", JSON.stringify(newCart));
-    setCart(newCart);
+    tempCart.orders = newCart;
+    localStorage.setItem("cart", JSON.stringify(tempCart));
+    setCart(tempCart);
     setSelectedOrder({});
     handleClose();
   };
@@ -65,7 +69,8 @@ const CartTable = () => {
     handleClose();
   };
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, cart?.length - page * rowsPerPage);
+    rowsPerPage -
+    Math.min(rowsPerPage, cart.orders?.length - page * rowsPerPage);
   return (
     <>
       <TableContainer component={Paper}>
@@ -79,7 +84,7 @@ const CartTable = () => {
             </TableRow>
           </TableHead>
           <TableBody className={classes.tablebody}>
-            {cart
+            {cart.orders
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((order, index) => (
                 <TableRow key={index}>
@@ -114,7 +119,7 @@ const CartTable = () => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={cart?.length}
+          count={cart.orders?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
