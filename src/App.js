@@ -15,6 +15,7 @@ import CategoryPage from "./pages/CategoryPage";
 import { StateProvider } from "./context/StateContext";
 import ProductDetailesPage from "./pages/ProductDetailesPage";
 import CartPage from "./pages/CartPage";
+import FinalizeOrder from "./pages/FinalizeOrder";
 function App() {
   let history = useHistory();
   return (
@@ -26,6 +27,11 @@ function App() {
             <HomePage />
             <Footer />
           </div>
+        </Route>
+        <Route path="/home/cart/information" exact>
+          <Header />
+          <FinalizeOrder />
+          <Footer />
         </Route>
         <Route path="/home/cart" exact>
           <Header />
