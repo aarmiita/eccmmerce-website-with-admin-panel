@@ -486,4 +486,48 @@ export const useStyles = makeStyles((theme) => ({
     width: 200,
     margin: 10,
   },
+  orderInformation: {
+    padding: 20,
+    height: "100%",
+    margin: "auto",
+    marginTop: 20,
+  },
+  formInput: {
+    width: 400,
+    margin: 20,
+  },
+  inputLabel: {
+    marginBottom: 10,
+  },
+  formControl: {
+    // minHeight: 400,
+    display: "flex",
+    flexWrap: "wrap",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
+  formbtnDiv: {
+    maxWidth: 900,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    margin: 10,
+  },
+  formbtn: {
+    width: 200,
+    height: 50,
+    padding: 5,
+    color: "white",
+    backgroundColor: COLORS.green,
+  },
+  formTitle: {
+    marginLeft: 10,
+    padding: 20,
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+    },
+  },
 }));
