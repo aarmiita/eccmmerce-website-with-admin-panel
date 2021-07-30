@@ -16,6 +16,7 @@ import { StateProvider } from "./context/StateContext";
 import ProductDetailesPage from "./pages/ProductDetailesPage";
 import CartPage from "./pages/CartPage";
 import FinalizeOrder from "./pages/FinalizeOrder";
+import Payment from "./components/Payments/Payment";
 function App() {
   let history = useHistory();
   return (
@@ -27,6 +28,11 @@ function App() {
             <HomePage />
             <Footer />
           </div>
+        </Route>
+        <Route path="/payment" exact>
+          <Header />
+          <Payment />
+          <Footer />
         </Route>
         <Route path="/home/cart/information" exact>
           <Header />
