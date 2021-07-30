@@ -1,8 +1,10 @@
 import { Button } from "@material-ui/core";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import payment from "../../assets/images/payment.png";
 import { useStyles } from "../../styles";
 const Payment = () => {
+  const history = useHistory();
   const classes = useStyles();
   const orders = JSON.stringify({ orders: [] });
   const cartFromLocalStorage = JSON.parse(
@@ -10,6 +12,9 @@ const Payment = () => {
   );
   const [cart, setCart] = useState({});
   const handleSuccessPayment = () => {};
+  const handleUnsuccessPayment = () => {
+    history.push("/payment/unsuccess");
+  };
   return (
     <div className="payment">
       <div className="payment__pic__div">
@@ -27,6 +32,7 @@ const Payment = () => {
           variant="contained"
           color="secondary"
           className="payment__btn__div__unsuccessbtn"
+          onClick={() => handleUnsuccessPayment()}
         >
           <strong>پرداخت ناموفق</strong>
         </Button>
