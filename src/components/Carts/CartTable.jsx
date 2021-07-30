@@ -12,7 +12,9 @@ import { useStyles } from "../../styles/index";
 import MainModal from "../MainModal";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { CallMissedSharp } from "@material-ui/icons";
+import { useHistory } from "react-router";
 const CartTable = () => {
+  let history = useHistory();
   const classes = useStyles();
   const orders = JSON.stringify({ orders: [] });
   const cartFromLocalStorage = JSON.parse(
@@ -67,6 +69,9 @@ const CartTable = () => {
   const handleNo = () => {
     setSelectedOrder({});
     handleClose();
+  };
+  const handleGoToInformation = () => {
+    history.push("/home/cart/information");
   };
   const emptyRows =
     rowsPerPage -
@@ -126,18 +131,24 @@ const CartTable = () => {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </TableContainer>
-      <Box className={classes.cartBox}>
-        <Box component="div">
-          <Typography component="h6" variant="h6">
-            <strong>جمع کل :{total} </strong>
-          </Typography>
+      {cart.orders?.length > 0 && (
+        <Box className={classes.cartBox}>
+          <Box component="div">
+            <Typography component="h6" variant="h6">
+              <strong>جمع کل :{total} </strong>
+            </Typography>
+          </Box>
+          <Box component="div" className={classes.totalDiv}>
+            <Button
+              variant="contained"
+              className={classes.cartTableBtn}
+              onClick={() => handleGoToInformation()}
+            >
+              <strong>نهایی کردن سبد خرید</strong>
+            </Button>
+          </Box>
         </Box>
-        <Box component="div" className={classes.totalDiv}>
-          <Button variant="contained" className={classes.cartTableBtn}>
-            <strong>نهایی کردن سبد خرید</strong>
-          </Button>
-        </Box>
-      </Box>
+      )}
       <MainModal open={open} handleClose={handleClose}>
         <div className={classes.detailesModal}>
           <Typography component="h5" variant="h5">
