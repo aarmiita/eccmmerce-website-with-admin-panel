@@ -17,6 +17,8 @@ import ProductDetailesPage from "./pages/ProductDetailesPage";
 import CartPage from "./pages/CartPage";
 import FinalizeOrder from "./pages/FinalizeOrder";
 import Payment from "./components/Payments/Payment";
+import SuccessFullPaymentPage from "./pages/SuccessFullPaymentPage";
+import UnSuccessFullPaymentPage from "./pages/UnSuccessFullPaymentPage";
 function App() {
   let history = useHistory();
   return (
@@ -28,6 +30,16 @@ function App() {
             <HomePage />
             <Footer />
           </div>
+        </Route>
+        <Route path="/payment/unsuccess" exact>
+          <Header />
+          <UnSuccessFullPaymentPage />
+          <Footer />
+        </Route>
+        <Route path="/payment/:cartId" exact>
+          <Header />
+          <SuccessFullPaymentPage />
+          <Footer />
         </Route>
         <Route path="/payment" exact>
           <Header />
