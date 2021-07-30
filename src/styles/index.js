@@ -530,4 +530,29 @@ export const useStyles = makeStyles((theme) => ({
       textAlign: "center",
     },
   },
+  paymentresult: {
+    padding: 20,
+    height: "73.8vh",
+    width: "100%",
+    marginTop: 100,
+  },
+  paymentresultcontent: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  successIcon: {
+    color: COLORS.green,
+    fontSize: 100,
+  },
+  paymentparagraph: {
+    textAlign: "justify",
+    width: 300,
+  },
+  unsuccessIcon: {
+    color: COLORS.red,
+    fontSize: 100,
+  },
 }));
