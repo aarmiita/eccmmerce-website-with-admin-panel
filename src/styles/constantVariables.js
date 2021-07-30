@@ -4,4 +4,5 @@ export const COLORS = {
   gray: "#3b4366",
   silver: "rgb(220,220,220)",
   darkSilver: "rgb(105,105,105)",
+  red: "rgb(206, 36, 36)",
 };
