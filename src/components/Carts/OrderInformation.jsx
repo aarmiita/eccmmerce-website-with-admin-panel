@@ -9,8 +9,10 @@ import {
 import { useStyles } from "../../styles";
 import { Calendar } from "react-datepicker2";
 import moment from "jalali-moment";
+import { useHistory } from "react-router-dom";
 
 const OrderInformation = () => {
+  let history = useHistory();
   const orders = JSON.stringify({ orders: [] });
   const cartFromLocalStorage = JSON.parse(
     localStorage.getItem("cart") || orders
@@ -226,6 +228,7 @@ const OrderInformation = () => {
               variant="contained"
               type="submit"
               className={classes.formbtn}
+              onClick={() => history.push("/payment")}
             >
               <strong>پرداخت</strong>
             </Button>
