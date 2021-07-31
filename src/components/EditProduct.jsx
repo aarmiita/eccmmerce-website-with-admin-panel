@@ -75,8 +75,8 @@ const EditProduct = ({ closeModal }) => {
         price: Number(price),
       };
       dispatch(ChangeAProductById(selectedProduct.id, newSelectedProduct));
-      dispatch(getProducts());
-      dispatch(SetselectedProduct({}));
+      // dispatch(getProducts());
+      // dispatch(SetselectedProduct({}));
       closeModal();
     }
     // let newProducts = products.map((product) =>
