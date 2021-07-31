@@ -188,6 +188,7 @@ export const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   modalcontent: {
+    overflowY: "auto",
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
@@ -222,7 +223,7 @@ export const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(4, 0),
   },
   formInput: {
-    height: 40,
+    height: 30,
   },
   editImage: {
     width: 34,
@@ -233,14 +234,18 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   modalContent: {
+    overflowY: "auto",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(1, 2, 1),
     maxWidth: 520,
-    minWidth: 550,
+    minWidth: 250,
     maxHeight: 600,
     minHeight: 400,
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(1, 1, 1),
+    },
   },
 
   backtoSite: {
@@ -493,8 +498,7 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: 20,
   },
   formInput: {
-    width: 400,
-    margin: 20,
+    maxWidth: 400,
   },
   inputLabel: {
     marginBottom: 10,
