@@ -6,6 +6,7 @@ import { useStyles } from "../styles";
 import { useSelector, useDispatch } from "react-redux";
 import { addProduct, getProducts } from "../redux/actions/productActions";
 import { toast, ToastContainer } from "react-toastify";
+import moment from "jalali-moment";
 const AddProducts = ({ closeModal }) => {
   const classes = useStyles();
   const [image, setImage] = useState("");
@@ -49,9 +50,10 @@ const AddProducts = ({ closeModal }) => {
         description: description,
         category: category,
         price: Number(price),
+        stock: 0,
+        createdAt: moment().locale("en").format("YYYY/MM/DD"),
       };
       dispatch(addProduct(newProduct));
-      dispatch(getProducts());
       setTitle("");
       setImage("");
       setDescription("");
@@ -93,10 +95,10 @@ const AddProducts = ({ closeModal }) => {
         <div className={classes.formBox}>
           <h4>نام کالا : </h4>
           <TextField
+            fullWidth
             className={classes.formInput}
             InputProps={{ classes: { input: classes.formAreaInput } }}
             variant="outlined"
-            fullWidth
             name="title"
             autoComplete="name"
             autoFocus
