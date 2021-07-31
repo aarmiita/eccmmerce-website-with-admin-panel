@@ -13,8 +13,6 @@ const DeleteProduct = ({ closeModalDelete }) => {
   );
   const handleYes = () => {
     dispatch(deleteAProduct(selectedProduct.id));
-    dispatch(getProducts());
-    dispatch(SetselectedProduct({}));
     closeModalDelete();
   };
   const handleNo = () => {

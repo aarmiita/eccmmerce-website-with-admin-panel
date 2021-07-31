@@ -96,6 +96,8 @@ export const ChangeAProductById = (id, product) => async (dispatch) => {
 export const deleteAProduct = (id) => async (dispatch) => {
   await deleteProduct(id);
   dispatch(deleteSelectedProduct(id));
+  dispatch(getProducts());
+  dispatch(SetselectedProduct({}));
 };
 export const getCarts = () => async (dispatch) => {
   const res = await getAllCart();
