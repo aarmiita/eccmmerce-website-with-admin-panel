@@ -86,10 +86,12 @@ export const getAProduct = (id) => async (dispatch) => {
 export const addProduct = (product) => async (dispatch) => {
   let res = await addAProduct(product);
   dispatch(setNewProduct(res.data));
+  dispatch(getProducts());
 };
 export const ChangeAProductById = (id, product) => async (dispatch) => {
   let res = await changeAProduct(id, product);
   dispatch(getProducts());
+  dispatch(SetselectedProduct({}));
 };
 export const deleteAProduct = (id) => async (dispatch) => {
   await deleteProduct(id);
