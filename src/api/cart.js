@@ -17,3 +17,13 @@ export const changeACart = async (id, order) => {
   }).catch((err) => console.log(err));
   return res;
 };
+export const addCart = async (cart) => {
+  let res = await axios({
+    method: "post",
+    url: `http://localhost:5001/cart`,
+    headers: { "content-type": "application/json" },
+    data: JSON.stringify(cart),
+  }).catch((err) => console.log(err));
+  console.log(res);
+  return res;
+};
