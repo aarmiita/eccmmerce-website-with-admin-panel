@@ -70,6 +70,7 @@ const OrderInformation = () => {
       };
       localStorage.setItem("cart", JSON.stringify(tempCart));
       setCart(tempCart);
+      history.push("/payment");
     }
   };
 
@@ -81,7 +82,7 @@ const OrderInformation = () => {
             نهایی کردن خرید
           </Typography>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className={classes.formControl}>
             <div className={classes.formInput}>
               <InputLabel htmlFor="firstName" className={classes.inputLabel}>
@@ -188,7 +189,9 @@ const OrderInformation = () => {
                 <strong>تاریخ تحویل :</strong>‌
               </InputLabel>
               <Box component="span">
-                <Button onClick={() => setShow(true)}>G</Button>
+                <Button type="button" onClick={() => setShow(true)}>
+                  G
+                </Button>
               </Box>
               <TextField
                 {...(errors.date && {
@@ -228,7 +231,7 @@ const OrderInformation = () => {
               variant="contained"
               type="submit"
               className={classes.formbtn}
-              onClick={() => history.push("/payment")}
+              onClick={(e) => handleSubmit(e)}
             >
               <strong>پرداخت</strong>
             </Button>
