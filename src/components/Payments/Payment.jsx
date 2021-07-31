@@ -20,7 +20,10 @@ const Payment = () => {
     });
   }, []);
   const handleSuccessPayment = () => {
-    addCart(cart).then((res) => history.push(`/payment/${idFromServer}`));
+    addCart(cart).then((res) => {
+      history.push(`/payment/${idFromServer}`);
+      localStorage.removeItem("cart");
+    });
   };
 
   const handleUnsuccessPayment = () => {
