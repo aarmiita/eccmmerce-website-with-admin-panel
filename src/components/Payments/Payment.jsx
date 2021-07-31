@@ -1,8 +1,9 @@
 import { Button } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import payment from "../../assets/images/payment.png";
 import { useStyles } from "../../styles";
+import { addCart, getAllCart } from "../../api/cart";
 const Payment = () => {
   const history = useHistory();
   const classes = useStyles();
@@ -10,8 +11,18 @@ const Payment = () => {
   const cartFromLocalStorage = JSON.parse(
     localStorage.getItem("cart") || orders
   );
-  const [cart, setCart] = useState({});
-  const handleSuccessPayment = () => {};
+  const [cart, setCart] = useState(cartFromLocalStorage);
+  const [idFromServer, setIdFromServer] = useState("");
+  useEffect(() => {
+    getAllCart().then((res) => {
+      let newId = res.data.length;
+      setIdFromServer(newId);
+    });
+  }, []);
+  const handleSuccessPayment = () => {
+    addCart(cart).then((res) => history.push(`/payment/${idFromServer}`));
+  };
+
   const handleUnsuccessPayment = () => {
     history.push("/payment/unsuccess");
   };
