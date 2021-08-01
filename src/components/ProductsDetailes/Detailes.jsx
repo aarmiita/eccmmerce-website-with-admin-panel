@@ -108,10 +108,10 @@ const Detailes = () => {
           <Typography component="h6" variant="h6">
             <strong>{detailes.title}</strong>
           </Typography>
-          <Typography component="p" variant="p">
-            <strong>{category}</strong>
+          <Typography component="h6" variant="h6">
+            <strong> دسته بندی : {category}</strong>
           </Typography>
-          <Typography component="p">
+          <Typography component="h5" variant="h6">
             <strong>{price} تومان</strong>
           </Typography>
           <div className={classes.detailesActions}>
@@ -125,7 +125,6 @@ const Detailes = () => {
 
             {detailes.stock === 0 ? (
               <Button
-                style={{ marginRight: "10px" }}
                 variant="contained"
                 color="secondary"
                 onClick={() => handleOpenModal()}
