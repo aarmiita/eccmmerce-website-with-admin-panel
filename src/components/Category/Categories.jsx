@@ -110,17 +110,7 @@ const Categories = () => {
           </TextField>
         </Box>
       </Box>
-      <Box
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          padding: "10px",
-          // justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <Box className={classes.category_main_box}>
         {productsByCategory.length > 0 ? (
           // currentPosts
           productsByCategory
