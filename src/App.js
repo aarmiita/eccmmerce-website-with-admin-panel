@@ -64,9 +64,11 @@ function App() {
 
         <Route path="/home/:category" exact>
           <StateProvider>
-            <Header />
-            <CategoryPage />
-            <Footer />
+            <div className="mainContainer">
+              <Header />
+              <CategoryPage />
+              <Footer />
+            </div>
           </StateProvider>
         </Route>
         <Route path="/admin/login" exact component={SignIn} />
