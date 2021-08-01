@@ -389,21 +389,25 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: 10,
   },
   detailesCard: {
+    marginTop: 20,
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     width: "100%",
     maxHeight: 500,
     [theme.breakpoints.down("xs")]: {
+      marginTop: 20,
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
     },
   },
   detailesImage: {
+    marginTop: 20,
     width: 400,
     height: 400,
     [theme.breakpoints.down("xs")]: {
+      marginTop: 20,
       width: 300,
       height: 300,
     },
@@ -421,6 +425,7 @@ export const useStyles = makeStyles((theme) => ({
   detailesbtn: {
     backgroundColor: COLORS.green,
     color: "#f5f5f5",
+    marginLeft: 20,
   },
   detailesInput: {
     width: 80,
@@ -481,10 +486,23 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "flex-Start",
     maxWidth: "70%",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
+      margin: "auto",
+    },
+  },
+  category_main_box: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    padding: "10px",
+    // justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "center",
     },
   },
   categoryFiltersBox: {
@@ -496,6 +514,15 @@ export const useStyles = makeStyles((theme) => ({
     height: "100%",
     margin: "auto",
     marginTop: 20,
+  },
+  formInputOrders: {
+    width: 400,
+    margin: 20,
+  },
+  ordersDeliverybtn: {
+    marginBottom: 10,
+    color: "white",
+    backgroundColor: COLORS.blue,
   },
   formInput: {
     maxWidth: 400,
