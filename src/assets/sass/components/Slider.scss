@@ -18,7 +18,7 @@
   border-radius: 10px;
   background-color: $green;
 
-  @media (max-width: 453px) {
+  @media (max-width: 576px) {
     padding: 10px 0;
     justify-content: center;
     margin: 20px auto;
@@ -34,7 +34,7 @@
     justify-content: center;
     align-items: center;
     width: 200px;
-    @media (max-width: 453px) {
+    @media (max-width: 576px) {
       display: none;
     }
     &__title {
@@ -70,7 +70,7 @@
   margin-top: 120px;
 }
 .main-carousel {
-  @media (max-width: 453px) {
+  @media (max-width: 576px) {
     padding: 5px 5px;
     justify-content: center;
   }
