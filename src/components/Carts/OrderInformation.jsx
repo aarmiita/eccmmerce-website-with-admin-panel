@@ -9,6 +9,7 @@ import {
 import { useStyles } from "../../styles";
 import { Calendar } from "react-datepicker2";
 import moment from "jalali-moment";
+import momentJalaali from "moment-jalaali";
 import { useHistory } from "react-router-dom";
 
 const OrderInformation = () => {
@@ -34,6 +35,7 @@ const OrderInformation = () => {
     // let newDate = moment(date).locale("en").format("YYYY/MM/DD");
     // console.log(newDate);
     // console.log(new Date(newDate));
+    console.log(momentJalaali(date).locale("fa").format("YYYY/MM/DD"));
   }, []);
   const validate = () => {
     let temp = {};
@@ -84,7 +86,7 @@ const OrderInformation = () => {
         </div>
         <form>
           <div className={classes.formControl}>
-            <div className={classes.formInput}>
+            <div className={classes.formInputOrders}>
               <InputLabel htmlFor="firstName" className={classes.inputLabel}>
                 <strong>نام :</strong>‌
               </InputLabel>
@@ -108,7 +110,7 @@ const OrderInformation = () => {
               />
             </div>
 
-            <div className={classes.formInput}>
+            <div className={classes.formInputOrders}>
               <InputLabel htmlFor="lastName" className={classes.inputLabel}>
                 <strong>نام خانوادگی :</strong>‌
               </InputLabel>
@@ -131,7 +133,7 @@ const OrderInformation = () => {
               />
             </div>
 
-            <div className={classes.formInput}>
+            <div className={classes.formInputOrders}>
               <InputLabel htmlFor="address" className={classes.inputLabel}>
                 <strong>آدرس :</strong>‌
               </InputLabel>
@@ -158,7 +160,7 @@ const OrderInformation = () => {
               />
             </div>
 
-            <div className={classes.formInput}>
+            <div className={classes.formInputOrders}>
               <InputLabel htmlFor="phoneNumber" className={classes.inputLabel}>
                 <strong>تلفن همراه : </strong>
                 <span>
@@ -184,13 +186,24 @@ const OrderInformation = () => {
                 placeholder="تلفن همراه"
               />
             </div>
-            <div className={classes.formInput}>
+            <div className={classes.formInputOrders}>
               <InputLabel htmlFor="orderTime" className={classes.inputLabel}>
                 <strong>تاریخ تحویل :</strong>‌
               </InputLabel>
               <Box component="span">
-                <Button type="button" onClick={() => setShow(true)}>
-                  G
+                <Button
+                  component="div"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShow(!show);
+                  }}
+                  className={classes.ordersDeliverybtn}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShow(!show);
+                  }}
+                >
+                  انتخاب زمان تحویل
                 </Button>
               </Box>
               <TextField
@@ -202,7 +215,7 @@ const OrderInformation = () => {
                   date ? moment(date).locale("fa").format("YYYY/MM/DD") : ""
                 }
                 fullWidth
-                autoComplete="orderTime"
+                autoComplete="OrderTime"
                 name="orderTime"
                 variant="outlined"
                 id="orderTime"
@@ -213,9 +226,8 @@ const OrderInformation = () => {
                   persianDigits={false}
                   value={date}
                   onChange={(value) => {
-                    setDate(moment(value).locale("en").format("YYYY/MM/DD"));
+                    setDate(value);
                     setShow(false);
-                    validate();
                   }}
                   isGregorian={false}
                   timePicker={false}
