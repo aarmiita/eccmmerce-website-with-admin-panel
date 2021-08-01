@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Drawer,
@@ -19,13 +19,14 @@ export default function ClippedDrawer() {
   let history = useHistory();
   const { categories } = useContext(StateContext);
   const classes = useStyles();
+  const [routes, setRoutes] = useState("");
   const handleGoToCategory = (title) => {
     if (title === "لبنیات") {
+      setRoutes("/home/dairy");
       history.push("/home/dairy");
-      window.location.reload();
     } else if (title === "محصولات پروتئینی") {
+      setRoutes("/home/protein");
       history.push("/home/protein");
-      window.location.reload();
     } else if (title === "نوشیدنی") {
       history.push("/home/drinks");
       window.location.reload();
@@ -38,7 +39,7 @@ export default function ClippedDrawer() {
         <List className={classes.categoryList}>
           <ListItemText
             key={index}
-            onClick={() => handleGoToCategory(item.name)}
+            onClick={() => handleGoToCategory()}
             style={{ cursor: "pointer" }}
           >
             <strong className={classes.categoryStrong}>{item.name}</strong>
