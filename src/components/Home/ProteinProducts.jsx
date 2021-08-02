@@ -42,6 +42,13 @@ const ProteinProducts = () => {
     <>
       {protein.length > 0 ? (
         <div className="slider_main">
+          <h1
+            className="slider_main_title"
+            onClick={() => handleClick(protein[0].category)}
+          >
+            {" "}
+            محصولات پروتئینی
+          </h1>
           <div className="slider-container">
             <div
               className="slider-container__images"
