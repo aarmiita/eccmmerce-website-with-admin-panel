@@ -2,10 +2,13 @@ import React, { createContext, useState } from "react";
 const initialState = {
   categoryDrawer: [
     {
+      category: "dairy",
       name: "لبنیات",
       subCategory: ["ماست", "دوغ", "کره حیوانی و گیاهی", "شیر"],
     },
     {
+      category: "protein",
+
       name: "محصولات پروتئینی",
       subCategory: [
         "ماهی , میگو و خاویار",
@@ -15,6 +18,7 @@ const initialState = {
       ],
     },
     {
+      category: "drinks",
       name: "نوشیدنی",
       subCategory: ["قهوه", "قهوه فوری و هات چاکلت", "چای", "شربت و آبمیوه"],
     },
