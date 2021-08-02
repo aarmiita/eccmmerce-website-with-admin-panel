@@ -15,22 +15,15 @@ import Categories from "../components/Category/Categories";
 import { StateContext } from "../context/StateContext";
 import { useStyles } from "../styles";
 import { useHistory } from "react-router";
+import { NavLink } from "react-router-dom";
 export default function ClippedDrawer() {
   let history = useHistory();
   const { categories } = useContext(StateContext);
   const classes = useStyles();
   const [routes, setRoutes] = useState("");
-  const handleGoToCategory = (title) => {
-    if (title === "لبنیات") {
-      setRoutes("/home/dairy");
-      history.push("/home/dairy");
-    } else if (title === "محصولات پروتئینی") {
-      setRoutes("/home/protein");
-      history.push("/home/protein");
-    } else if (title === "نوشیدنی") {
-      history.push("/home/drinks");
-      window.location.reload();
-    }
+  const handleGoToCategory = (category) => {
+    history.push(`/home/${category}`);
+    // window.location.reload();
   };
   const renderedList = categories.map((item, index) => {
     return (
@@ -39,7 +32,7 @@ export default function ClippedDrawer() {
         <List className={classes.categoryList}>
           <ListItemText
             key={index}
-            onClick={() => handleGoToCategory()}
+            onClick={() => handleGoToCategory(item.category)}
             style={{ cursor: "pointer" }}
           >
             <strong className={classes.categoryStrong}>{item.name}</strong>
