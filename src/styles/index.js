@@ -31,7 +31,7 @@ export const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   headericon: {
-    fontSize: "small",
+    fontSize: "medium",
     margin: theme.spacing(0, 1),
   },
   drawerPaper: {
