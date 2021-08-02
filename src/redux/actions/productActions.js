@@ -116,21 +116,3 @@ export const setCategory = (category) => async (dispatch) => {
   dispatch(setProducts(response));
   dispatch(setProductsByCategory(category));
 };
-// export const setSortedCategory = (category, sortName) => async (dispatch) => {
-//   const res = await getAllProducts();
-//   let response = res.data.sort((a, b) =>
-//     sortName === "lowestPrice"
-//       ? a.price > b.price
-//         ? 1
-//         : -1
-//       : sortName === "highestPrice"
-//       ? a.price < b.price
-//         ? 1
-//         : -1
-//       : new Date(a) < new Date(b)
-//       ? 1
-//       : -1
-//   );
-//   dispatch(setProducts(response));
-//   dispatch(setProductsByCategory(category));
-// };
