@@ -27,7 +27,6 @@ const initialState = {
 export const StateContext = createContext(initialState);
 export const StateProvider = ({ children }) => {
   const [categories, setCategories] = useState(initialState.categoryDrawer);
-
   return (
     <StateContext.Provider
       value={{
