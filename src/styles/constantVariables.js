@@ -6,4 +6,5 @@ export const COLORS = {
   darkSilver: "rgb(105,105,105)",
   red: "rgb(206, 36, 36)",
   blue: "#3f51b5",
+  specialGray: "rgba(176, 182, 177, 1)",
 };
