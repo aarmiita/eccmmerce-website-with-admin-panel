@@ -10,10 +10,11 @@ import Paper from "@material-ui/core/Paper";
 import { Button, Box, Typography } from "@material-ui/core";
 import { useStyles } from "../../styles/index";
 import MainModal from "../MainModal";
-import CancelIcon from "@material-ui/icons/Cancel";
-import { CallMissedSharp } from "@material-ui/icons";
 import { useHistory } from "react-router";
+import { setEntity } from "../../redux/actions/productActions";
+import { useDispatch } from "react-redux";
 const CartTable = () => {
+  const dispatch = useDispatch();
   let history = useHistory();
   const classes = useStyles();
   const orders = JSON.stringify({ orders: [] });
@@ -37,7 +38,7 @@ const CartTable = () => {
   useEffect(() => {
     console.log(cart);
     getTotal(cart.orders);
-  }, []);
+  }, [cart]);
 
   const handleClose = () => {
     setOpen(false);
@@ -63,6 +64,7 @@ const CartTable = () => {
     tempCart.orders = newCart;
     localStorage.setItem("cart", JSON.stringify(tempCart));
     setCart(tempCart);
+    dispatch(setEntity(tempCart));
     setSelectedOrder({});
     handleClose();
   };

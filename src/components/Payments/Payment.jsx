@@ -4,7 +4,10 @@ import { useHistory } from "react-router-dom";
 import payment from "../../assets/images/payment.png";
 import { useStyles } from "../../styles";
 import { addCart, getAllCart } from "../../api/cart";
+import { setEntity } from "../../redux/actions/productActions";
+import { useDispatch } from "react-redux";
 const Payment = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
   const orders = JSON.stringify({ orders: [] });
@@ -23,6 +26,7 @@ const Payment = () => {
     addCart(cart).then((res) => {
       history.push(`/payment/${idFromServer}`);
       localStorage.removeItem("cart");
+      dispatch(setEntity({ orders: [] }));
     });
   };
 

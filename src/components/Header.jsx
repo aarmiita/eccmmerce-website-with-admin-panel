@@ -25,8 +25,17 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import logo from "../assets/images/logo.png";
 import { useStyles } from "../styles";
 import { StateContext } from "../context/StateContext";
-
+import { setEntity } from "../redux/actions/productActions";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const Header = (props) => {
+  const dispatch = useDispatch();
+  const cartEntity = useSelector((state) => state.allProducts.cartEntity);
+  const orders = JSON.stringify({ orders: [] });
+  const cartFromLocalStorage = JSON.parse(
+    localStorage.getItem("cart") || orders
+  );
+  const [cart, setCart] = useState(cartFromLocalStorage);
   const { categories } = useContext(StateContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -51,6 +60,9 @@ const Header = (props) => {
       setShowCategoryDrawer(false);
     }
   }, [locations]);
+  useEffect(() => {
+    dispatch(setEntity(cartFromLocalStorage));
+  }, []);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -61,7 +73,11 @@ const Header = (props) => {
       <>
         <div className={classes.categoryToolbar} />
         <List className={classes.categoryList}>
-          <ListItemText key={index}>
+          <ListItemText
+            className={classes.modalCategoryListItem}
+            key={index}
+            onClick={() => history.push(`/home/${item.category}`)}
+          >
             <strong className={classes.categoryStrong}>{item.name}</strong>
           </ListItemText>
           {item.subCategory?.map((category, index) => {
@@ -151,6 +167,11 @@ const Header = (props) => {
                             color="inherit"
                             onClick={() => handleCartClick()}
                           >
+                            {cartEntity.orders?.length > 0 && (
+                              <Box component="div" className="cartEntityIcon3">
+                                {cartEntity.orders?.length}
+                              </Box>
+                            )}
                             <ShoppingCartIcon className={classes.headericon} />
                             سبد خرید
                           </Button>
@@ -188,6 +209,11 @@ const Header = (props) => {
                         <MenuItem onClick={() => handleManageClick()}>
                           مدیریت
                         </MenuItem>
+                        {cartEntity.orders?.length > 0 && (
+                          <Box component="div" className="cartEntityIcon2">
+                            {cartEntity.orders?.length}
+                          </Box>
+                        )}
                         <MenuItem onClick={() => handleCartClick()}>
                           سبد خرید
                         </MenuItem>
@@ -205,6 +231,11 @@ const Header = (props) => {
                     color="inherit"
                     onClick={() => handleCartClick()}
                   >
+                    {cartEntity.orders?.length > 0 && (
+                      <Box component="div" className="cartEntityIcon">
+                        {cartEntity.orders?.length}
+                      </Box>
+                    )}
                     <ShoppingCartIcon className={classes.headericon} />
                     سبد خرید
                   </Button>
