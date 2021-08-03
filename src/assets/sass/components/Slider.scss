@@ -1,8 +1,15 @@
 .slider_main {
   padding: 20px;
-  @media (max-width: 453px) {
+  @media (max-width: 576px) {
     padding: 5px 5px;
     justify-content: center;
+  }
+  &_title {
+    display: none;
+    @media (max-width: 576px) {
+      cursor: pointer;
+      display: block;
+    }
   }
 }
 
