@@ -328,10 +328,15 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   footerTitle: {
+    color: "black",
     flexGrow: 1,
     textAlign: "center",
   },
   footerMain: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 130,
     backgroundColor: COLORS.darkGreen,
   },
   categoryRoot: {
@@ -368,6 +373,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   categoryStrong: {
     fontSize: 20,
+  },
+  modalCategoryListItem: {
+    cursor: "pointer",
   },
   categorySmall: {
     fontWeight: "bold",
