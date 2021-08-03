@@ -10,12 +10,16 @@ const {
   SAVED_PRODUCTS,
   SET_PRODUCTS_BY_CATEGORY,
   SET_TEMPORARAY_CART,
+  SET_LOADING,
+  SET_CARTENTITY,
 } = ActionTypes;
 
 const initialState = {
+  cartEntity: { orders: [] },
   products: [{}],
   selectedProduct: {},
   showButton: false,
+  loading: false,
   compeletedCarts: [
     {
       id: 8,
@@ -125,6 +129,10 @@ export const ProductReducer = (state = initialState, { type, payload }) => {
       };
     case SET_TEMPORARAY_CART:
       return { ...state, temporaryCart: payload };
+    case SET_LOADING:
+      return { ...state, loading: payload };
+    case SET_CARTENTITY:
+      return { ...state, cartEntity: payload };
     default:
       return state;
   }
