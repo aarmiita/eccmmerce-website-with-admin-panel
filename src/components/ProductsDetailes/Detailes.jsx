@@ -15,7 +15,10 @@ import TabContent from "./TabContent";
 import Loading from "../Loading/Loading";
 import { toast, ToastContainer } from "react-toastify";
 import MainModal from "./../MainModal";
+import { setEntity } from "../../redux/actions/productActions";
+import { useDispatch } from "react-redux";
 const Detailes = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const orders = JSON.stringify({ orders: [] });
   const cartFromLocalStorage = JSON.parse(
@@ -74,6 +77,7 @@ const Detailes = () => {
       // tempCart = [...tempCart, newItem];
       setNewCart(tempCart);
       localStorage.setItem("cart", JSON.stringify(tempCart));
+      dispatch(setEntity(tempCart));
       console.log("fnished");
     } else {
       let newQuantity = Number(numbers) + tempItem.quantity;
