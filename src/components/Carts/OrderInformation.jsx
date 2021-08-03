@@ -35,7 +35,6 @@ const OrderInformation = () => {
     // let newDate = moment(date).locale("en").format("YYYY/MM/DD");
     // console.log(newDate);
     // console.log(new Date(newDate));
-    console.log(momentJalaali(date).locale("fa").format("YYYY/MM/DD"));
   }, []);
   const validate = () => {
     let temp = {};
@@ -94,7 +93,6 @@ const OrderInformation = () => {
                 value={firstName}
                 onChange={(e) => {
                   setFirstName(e.target.value);
-                  validate();
                 }}
                 {...(errors.firstName && {
                   error: true,
@@ -118,7 +116,6 @@ const OrderInformation = () => {
                 value={lastName}
                 onChange={(e) => {
                   setLastName(e.target.value);
-                  validate();
                 }}
                 {...(errors.lastName && {
                   error: true,
@@ -142,7 +139,6 @@ const OrderInformation = () => {
                 value={address}
                 onChange={(e) => {
                   setAddress(e.target.value);
-                  validate();
                 }}
                 {...(errors.address && {
                   error: true,
@@ -177,7 +173,6 @@ const OrderInformation = () => {
                 onChange={(e) => {
                   setPhoneNumber(e.target.value);
                 }}
-                onKeyPress={() => validate()}
                 fullWidth
                 autoComplete="fname"
                 name="phoneNumber"
