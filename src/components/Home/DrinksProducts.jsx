@@ -42,6 +42,13 @@ const DrinksProducts = () => {
     <>
       {drinks.length > 0 ? (
         <div className="slider_main">
+          <h1
+            className="slider_main_title"
+            onClick={() => handleClick(drinks[0].category)}
+          >
+            نوشیدنی
+          </h1>
+
           <div className="slider-container">
             <div
               className="slider-container__images"
