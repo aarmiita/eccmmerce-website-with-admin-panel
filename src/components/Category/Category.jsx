@@ -63,7 +63,7 @@ const Category = ({ image, title, price, onClick }) => {
         </CardContent>
       </CardActionArea>
       <Box component="div" className={classes.sliderbtn}>
-        {price}
+        {price} &nbsp; تومان
       </Box>
     </Card>
   );
