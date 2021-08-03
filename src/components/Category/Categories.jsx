@@ -37,7 +37,7 @@ const Categories = () => {
   );
   useEffect(() => {
     dispatch(setCategory(category));
-  }, []);
+  }, [category]);
 
   // useEffect(() => {
   //   if (productsByCategory.length > 0) {
