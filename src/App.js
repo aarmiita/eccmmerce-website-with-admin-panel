@@ -67,7 +67,6 @@ function App() {
             <div className="mainContainer">
               <Header />
               <CategoryPage />
-              <Footer />
             </div>
           </StateProvider>
         </Route>
