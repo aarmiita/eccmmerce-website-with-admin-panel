@@ -1,5 +1,5 @@
-import { ForumTwoTone } from "@material-ui/icons";
 import React from "react";
+import PaginationList from "./PaginationList";
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
@@ -11,18 +11,15 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   };
 
   return (
-    <div class="center">
-      <ul class="pagination">
+    <div className="center">
+      <ul className="pagination">
         {pageNumbers.map((number) => (
-          <li
-            className="active"
+          <PaginationList
+            pageNumbers={pageNumbers}
             key={number}
-            onClick={() => {
-              paginationControl(number);
-            }}
-          >
-            {number}
-          </li>
+            onClick={() => paginationControl(number)}
+            number={number}
+          />
         ))}
       </ul>
     </div>
