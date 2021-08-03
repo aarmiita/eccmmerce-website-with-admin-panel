@@ -50,7 +50,7 @@ const AdminPage = ({ children }) => {
       >
         <Box component="div" className={classes.adminHeader}>
           <Toolbar>
-            <Hidden smDown>
+            {/* <Hidden smDown>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -62,7 +62,7 @@ const AdminPage = ({ children }) => {
               >
                 <MenuIcon />
               </IconButton>
-            </Hidden>
+            </Hidden> */}
             <Typography variant="h6" noWrap>
               پنل مدیریت فروشگاه
             </Typography>
