@@ -4,7 +4,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useStyles } from "../styles";
 import { useSelector, useDispatch } from "react-redux";
-import { addProduct, getProducts } from "../redux/actions/productActions";
+import { addProduct } from "../redux/actions/productActions";
 import { toast, ToastContainer } from "react-toastify";
 import moment from "jalali-moment";
 const AddProducts = ({ closeModal }) => {
