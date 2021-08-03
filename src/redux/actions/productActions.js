@@ -16,6 +16,8 @@ const {
   UNCOMPELETED_CARTS,
   SET_PRODUCTS_BY_CATEGORY,
   SET_TEMPORARAY_CART,
+  SET_LOADING,
+  SET_CARTENTITY,
 } = ActionTypes;
 export const setProducts = (products) => {
   return {
@@ -44,6 +46,19 @@ export const deleteSelectedProduct = (id) => {
 export const changeState = () => {
   return {
     type: CHANGE_STATE,
+  };
+};
+///////////////////////////////////////////////////////////////////////////////////////////////
+export const setALoading = (boolean) => {
+  return {
+    type: SET_LOADING,
+    payload: boolean,
+  };
+};
+export const setEntity = (cart) => {
+  return {
+    type: SET_CARTENTITY,
+    payload: cart,
   };
 };
 
