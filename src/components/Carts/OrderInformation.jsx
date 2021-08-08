@@ -21,7 +21,7 @@ const OrderInformation = () => {
   let pattern =
     /(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/gi;
   const classes = useStyles();
-  const [minDate, setMinDate] = useState(moment().add("days", 2));
+  const [minDate, setMinDate] = useState(moment().add("days", 1));
   const [maxDate, setMaxDate] = useState(moment().add("days", 6));
   const [show, setShow] = useState(false);
   const [firstName, setFirstName] = useState("");
