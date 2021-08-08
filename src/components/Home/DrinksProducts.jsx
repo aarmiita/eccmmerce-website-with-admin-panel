@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
 import Carousel from "react-elastic-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/actions/productActions";

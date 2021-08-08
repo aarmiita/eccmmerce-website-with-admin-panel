@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
 import Carousel from "react-elastic-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/actions/productActions";
@@ -34,40 +33,7 @@ const DairyProducts = () => {
     { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
     { width: 1400, itemsToShow: 4, itemsToScroll: 4 },
   ];
-  // let settings = {
-  //   dots: false,
-  //   arrow: true,
-  //   infinite: false,
-  //   speed: 1000,
-  //   slidesToShow: 4,
-  //   slidesToScroll: 4,
-  //   initialSlide: 0,
-  //   // cssEase: "linear",
-  //   responsive: [
-  //     {
-  //       breakpoint: 1024,
-  //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 3,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 600,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 2,
-  //         initialSlide: 2,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 480,
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //   ],
-  // };
+
   const handleClick = (category) => {
     console.log("hello");
     history.push(`home/${category}`);
