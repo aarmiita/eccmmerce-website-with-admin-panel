@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 import { COLORS } from "./constantVariables";
-import { createMuiTheme } from "@material-ui/core";
+import { createTheme } from "@material-ui/core";
 
 const drawerWidth = 240;
-export const theme = createMuiTheme({
+export const theme = createTheme({
   direction: "rtl",
 });
 export const useStyles = makeStyles((theme) => ({
