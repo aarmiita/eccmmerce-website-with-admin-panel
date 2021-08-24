@@ -27,11 +27,10 @@ export default function ClippedDrawer() {
   };
   const renderedList = categories.map((item, index) => {
     return (
-      <>
+      <div key={index}>
         <div className={classes.categoryToolbar} />
         <List className={classes.categoryList}>
           <ListItemText
-            key={index}
             onClick={() => handleGoToCategory(item.category)}
             style={{ cursor: "pointer" }}
           >
@@ -48,7 +47,7 @@ export default function ClippedDrawer() {
           })}
         </List>
         <Divider />
-      </>
+      </div>
     );
   });
   return (
