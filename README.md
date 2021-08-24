@@ -9,7 +9,7 @@
 # Website Images
 
 ![ScreenShot](./screenshots/1.jpg)
-<img src="./screenshots/1.jpg">
+<img src="./screenshots/1.jpg" width="200"></div>
 
 # Getting Started with Create React App
 
