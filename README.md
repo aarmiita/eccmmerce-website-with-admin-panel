@@ -10,8 +10,8 @@
 
 <h2>Click to view the full size</h2>
 
-<img src="./screenshots/1.jpg" width="200">
-<span><img src="./screenshots/2.png" width="200"></span>
+<img src="./screenshots/1.jpg" width="200" style="disply:inline">
+<img src="./screenshots/2.png" width="200">
 <img src="./screenshots/3.png" width="200">
 <img src="./screenshots/4.png" width="200">
 <img src="./screenshots/5.png" width="200">
