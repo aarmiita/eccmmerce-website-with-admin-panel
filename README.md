@@ -7,7 +7,7 @@
 
 # Website Images
 
-<h2>Click to view the full size</h2>
+<h3>Click to view the full size image</h3>
 <table>
 <tr>
 <td><img  src="./screenshots/1.jpg"  width="300" >
