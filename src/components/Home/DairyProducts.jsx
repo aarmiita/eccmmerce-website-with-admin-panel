@@ -72,6 +72,7 @@ const DairyProducts = () => {
                 {dairy?.map((item, index) => {
                   return (
                     <Product
+                      key={item.id}
                       image={item.image}
                       title={item.title}
                       price={item.price}
