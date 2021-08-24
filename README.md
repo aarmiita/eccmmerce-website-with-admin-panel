@@ -5,7 +5,7 @@
 "email": "eve.holt@reqres.in",
 "password": "cityslicka"
 
-# Website Images
+# Screenshots
 
 <h3>Click to view the full size image</h3>
 <table>
