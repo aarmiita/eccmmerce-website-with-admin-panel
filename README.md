@@ -1,3 +1,15 @@
+# Login information
+
+<strong>you can login with </strong>
+{
+"email": "eve.holt@reqres.in",
+"password": "cityslicka"
+}
+
+# Website Images
+
+![ScreenShot](/screenshots/1.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
