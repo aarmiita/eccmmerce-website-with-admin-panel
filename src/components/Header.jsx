@@ -70,7 +70,7 @@ const Header = (props) => {
 
   const renderedList = categories?.map((item, index) => {
     return (
-      <>
+      <div key={index}>
         <div className={classes.categoryToolbar} />
         <List className={classes.categoryList}>
           <ListItemText
@@ -91,7 +91,7 @@ const Header = (props) => {
           })}
         </List>
         <Divider />
-      </>
+      </div>
     );
   });
   const handleManageClick = () => {
