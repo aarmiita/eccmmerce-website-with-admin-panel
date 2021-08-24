@@ -132,8 +132,8 @@ export default function SimpleTable() {
           count={uncompeletedOrders?.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
       <MainModal open={openDelivery} handleClose={handleClose}>

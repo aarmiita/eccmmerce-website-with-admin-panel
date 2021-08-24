@@ -107,7 +107,11 @@ const Detailes = () => {
       <div></div>
 
       <Card className={classes.detailesCard}>
-        <CardMedia className={classes.detailesImage} image={detailes.image} />
+        <CardMedia
+          className={classes.detailesImage}
+          component="div"
+          image={detailes.image}
+        />
         <CardContent className={classes.detailesContent}>
           <Typography component="h6" variant="h6">
             <strong>{detailes.title}</strong>
