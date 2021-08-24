@@ -8,7 +8,7 @@
 
 # Website Images
 
-![ScreenShot](/screenshots/1.png)
+![ScreenShot](./screenshots/1.jpg)
 
 # Getting Started with Create React App
 
